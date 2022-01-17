@@ -1,0 +1,13 @@
+# build artifacts
+artifacts/
+
+# infra
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform
+
+# node modules
+**/node_modules
+
+# docker artifacts
+docker

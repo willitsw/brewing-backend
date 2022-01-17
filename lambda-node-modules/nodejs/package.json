@@ -1,0 +1,6 @@
+{
+  "name": "beer-app-lambda-node-modules",
+  "dependencies": {
+    "dotenv": "^12.0.3"
+  }
+}

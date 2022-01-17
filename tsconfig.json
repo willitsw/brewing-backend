@@ -1,0 +1,17 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "sourceMap": true,
+        "outDir": "./artifacts/compiled-ts",
+        "baseUrl": "./dev-server",
+        "module": "CommonJS",
+        "moduleResolution": "node"
+    },
+    "include": [
+        "back-end/**/*.ts",
+        "dev-server/**/*.ts",
+        "scripts/**/*.ts",
+        "seed-data/**/*.ts",
+        "back-end/lambdas/**/*.ts"
+    ]
+}
