@@ -10,11 +10,7 @@ module.exports.handler = async (event, context) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        message: responseMessage,
-        event: event,
-        context: context,
-      }),
+      body: `hi ${event.pathParameters.name}`,
     };
   } catch (e) {
     console.log("problem:", e);

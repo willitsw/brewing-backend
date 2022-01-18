@@ -9,7 +9,7 @@
     "deploy": "npm run build && terraform -chdir=terraform apply",
     "buildLocalDynamo": "tsc & node artifacts/compiled-ts/scripts/buildDynamo",
     "destroyLocalDynamo": "tsc & node artifacts/compiled-ts/scripts/destroyDynamo",
-    "dev": "NODE_ENV=development docker-compose up -d && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js"
+    "dev": "NODE_ENV=development docker-compose up -d && npm run build && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js"
   },
   "author": "",
   "license": "ISC",

@@ -4,36 +4,39 @@ const recipesGetById = require("../back-end/lambdas/recipes/get-by-id");
 
 const app = express();
 
-app.get("/", (request, response) => {
-  response.send("Welcome to Beer Backend!");
-});
-
-app.get("/hello", async (request, response) => {
-  let data = await helloWorldLambda.handler(
-    {}, // event
+const processRequest = async (lambda, requestObject) => {
+  return await lambda.handler(
+    {
+      pathParameters: requestObject.params,
+      queryStringParameters: requestObject.query,
+    }, // event
     {}, // content
     (error, result) => {
       if (error) console.error(JSON.stringify(error, null, 2));
       return result;
     }
   );
-  response.send(data);
+};
+
+app.get("/", (request, response) => {
+  response.send("Welcome to Beer Backend!");
 });
+
+app.get(
+  "/hello/:name",
+  async (request: express.Request, response: express.Response) => {
+    let data = await processRequest(helloWorldLambda, request);
+    response.send(data.body);
+  }
+);
 
 // RECIPE ENDPOINTS =======================================================
 
 app.get(
   "/recipe",
   async (request: express.Request, response: express.Response) => {
-    let data = await recipesGetById.handler(
-      {}, // event
-      {}, // content
-      (error, result) => {
-        if (error) console.error(JSON.stringify(error, null, 2));
-        return result;
-      }
-    );
-    response.send(data);
+    let data = await processRequest(recipesGetById, request);
+    response.send(data.body);
   }
 );
 
