@@ -156,14 +156,13 @@ resource "aws_lambda_layer_version" "node_modules_layer" {
 # }
 
 module "hello_world_lambda" {
-  source = "./modules/lambda-with-gateway"
-
   # Edit these
   function_name = "HelloWorld"
   handler_route = "lambdas/hello-world.handler"
   gateway_route = "GET /hello"
 
   # These shouldnt change probably
+  source = "./modules/lambda-with-gateway"
   iam_role = aws_iam_role.lambda_exec.arn
   lambda_layers = [aws_lambda_layer_version.node_modules_layer.arn]
   source_code_hash = data.archive_file.beer_backend_lambda_zip.output_base64sha256
@@ -174,14 +173,13 @@ module "hello_world_lambda" {
 }
 
 module "recipe_get_by_id_lambda" {
-  source = "./modules/lambda-with-gateway"
-
   # Edit these
   function_name = "GetRecipeById"
   handler_route = "lambdas/recipes/get-by-id.handler"
   gateway_route = "GET /recipe"
 
   # These shouldn't change probably
+  source = "./modules/lambda-with-gateway"
   iam_role = aws_iam_role.lambda_exec.arn
   lambda_layers = [aws_lambda_layer_version.node_modules_layer.arn]
   source_code_hash = data.archive_file.beer_backend_lambda_zip.output_base64sha256
