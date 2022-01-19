@@ -12,6 +12,7 @@
         "dev-server/**/*.ts",
         "scripts/**/*.ts",
         "seed-data/**/*.ts",
-        "back-end/lambdas/**/*.ts"
+        "back-end/lambdas/**/*.ts",
+        "back-end/constants.ts"
     ]
 }

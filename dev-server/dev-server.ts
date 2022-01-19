@@ -44,5 +44,4 @@ app.listen(5000, () => {
   console.log(`Beer-backend is running on port 5000`);
 });
 
-// Export your express server so you can import it in the lambda function.
 export default app;

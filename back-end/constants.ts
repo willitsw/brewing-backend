@@ -11,7 +11,9 @@ interface Constants {
 
 export const constants: Constants = {
   applicationPort: 5000,
-  dynamoDbLocation: "http://localhost:8000",
-  awsRegion: "local",
+  dynamoDbLocation: isLocal
+    ? "http://localhost:8000"
+    : "https://dynamodb.us-east-2.amazonaws.com",
+  awsRegion: isLocal ? "local" : "us-east-2",
   isLocal: isLocal,
 };
