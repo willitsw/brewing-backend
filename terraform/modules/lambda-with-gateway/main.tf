@@ -11,6 +11,12 @@ resource "aws_lambda_function" "function" {
   layers = var.lambda_layers
 
   role = var.iam_role
+
+  environment {
+    variables = {
+      environment = "production"
+    }
+  }
 }
 
 resource "aws_cloudwatch_log_group" "log_group" {

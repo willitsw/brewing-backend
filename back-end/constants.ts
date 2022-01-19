@@ -1,6 +1,4 @@
-require("dotenv").config();
-
-const isLocal = process.env.NODE_ENV === "development";
+const isLocal = process.env.environment !== "production";
 
 interface Constants {
   applicationPort: number;
