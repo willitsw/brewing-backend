@@ -48,3 +48,9 @@ resource "aws_lambda_permission" "permission" {
 
   source_arn = "${var.api_execution_arn}/*/*"
 }
+
+# resource "aws_lambda_provisioned_concurrency_config" "function_concurrency" {
+#   function_name                     = aws_lambda_function.function.function_name
+#   provisioned_concurrent_executions = 5
+#   qualifier                         = aws_lambda_function.function.version
+# }

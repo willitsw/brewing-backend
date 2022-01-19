@@ -33,3 +33,21 @@ resource "aws_apigatewayv2_stage" "lambda" {
     )
   }
 }
+
+# resource "aws_api_gateway_usage_plan" "beer_usage_plan" {
+#   name         = "beer-api-usage-plan"
+#   api_stages {
+#     api_id = aws_apigatewayv2_api.lambda.id
+#     stage  = aws_apigatewayv2_stage.lambda.name
+#   }
+
+#   quota_settings {
+#     limit  = 30000
+#     period = "WEEK"
+#   }
+
+#   throttle_settings {
+#     burst_limit = 20
+#     rate_limit  = 40
+#   }
+# }
