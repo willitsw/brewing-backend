@@ -1,24 +1,13 @@
 import { isEmptyOrNullObject } from "../../utilities/misc";
 import { getRecipeById } from "../../services/recipeService";
+import SuccessResponse from "../lambda-responses/success-response";
+import NotFoundResponse from "../lambda-responses/not-found-response";
 
 module.exports.handler = async (event, context) => {
-  console.log("get by id is trying to start");
-  const result = await getRecipeById("1");
+  const id = event.pathParameters.id;
+  const result = await getRecipeById(id);
   if (isEmptyOrNullObject(result)) {
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: "recipe not found",
-    };
+    return new NotFoundResponse(`Recipe with id ${id} not found`);
   }
-  console.log("heres the result:", result);
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(result),
-  };
+  return new SuccessResponse(result);
 };

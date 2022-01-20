@@ -30,9 +30,12 @@ resource "aws_iam_role_policy" "lambda_policy" {
           "dynamodb:Scan",
           "dynamodb:BatchWriteItem",
           "dynamodb:PutItem",
-          "dynamodb:UpdateItem"
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:ConditionCheckItem"
         ],
-        "Resource": aws_dynamodb_table.recipe_table.arn
+        "Resource": [aws_dynamodb_table.recipe_table.arn,
+          "${aws_dynamodb_table.recipe_table.arn}/index/*"]
       }
     ]
   })

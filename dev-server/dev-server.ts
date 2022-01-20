@@ -1,14 +1,19 @@
 import * as express from "express";
-const helloWorldLambda = require("../back-end/lambdas/hello-world");
 const recipesGetById = require("../back-end/lambdas/recipes/get-by-id");
+const recipesCreateUpdate = require("../back-end/lambdas/recipes/create-update");
+const recipesDelete = require("../back-end/lambdas/recipes/delete");
+const recipeQueryByUser = require("../back-end/lambdas/recipes/get-by-user");
 
 const app = express();
 
-const processRequest = async (lambda, requestObject) => {
+app.use(express.json());
+
+const processRequest = async (lambda, requestObject: express.Request) => {
   return await lambda.handler(
     {
       pathParameters: requestObject.params,
       queryStringParameters: requestObject.query,
+      body: JSON.stringify(requestObject.body),
     }, // event
     {}, // content
     (error, result) => {
@@ -22,21 +27,37 @@ app.get("/", (request, response) => {
   response.send("Welcome to Beer Backend!");
 });
 
-app.get(
-  "/hello/:name",
-  async (request: express.Request, response: express.Response) => {
-    let data = await processRequest(helloWorldLambda, request);
-    response.send(data.body);
-  }
-);
-
 // RECIPE ENDPOINTS =======================================================
 
 app.get(
-  "/recipe",
+  "/recipes/:id",
   async (request: express.Request, response: express.Response) => {
     let data = await processRequest(recipesGetById, request);
-    response.send(data.body);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.get(
+  "/recipes/user/:id",
+  async (request: express.Request, response: express.Response) => {
+    let data = await processRequest(recipeQueryByUser, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.post(
+  "/recipes",
+  async (request: express.Request, response: express.Response) => {
+    let data = await processRequest(recipesCreateUpdate, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.delete(
+  "/recipes/:id",
+  async (request: express.Request, response: express.Response) => {
+    let data = await processRequest(recipesDelete, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );
 

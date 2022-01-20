@@ -46,13 +46,13 @@ resource "aws_lambda_layer_version" "node_modules_layer" {
 
 # LAMBDA FUNCTIONS ##########################
 
-module "hello_world_lambda" {
+module "recipe_get_by_id_lambda" {
   # Edit these
-  function_name = "HelloWorld"
-  handler_route = "lambdas/hello-world.handler"
-  gateway_route = "GET /hello/{name}"
+  function_name = "RecipeGetById"
+  handler_route = "lambdas/recipes/get-by-id.handler"
+  gateway_route = "GET /recipes/{id}"
 
-  # These shouldnt change probably
+  # These shouldn't change probably
   source = "./modules/lambda-with-gateway"
   iam_role = aws_iam_role.lambda_exec.arn
   lambda_layers = [aws_lambda_layer_version.node_modules_layer.arn]
@@ -63,11 +63,45 @@ module "hello_world_lambda" {
   api_execution_arn = aws_apigatewayv2_api.lambda.execution_arn
 }
 
-module "recipe_get_by_id_lambda" {
+module "recipe_get_by_user_lambda" {
   # Edit these
-  function_name = "GetRecipeById"
-  handler_route = "lambdas/recipes/get-by-id.handler"
-  gateway_route = "GET /recipe"
+  function_name = "RecipeGetByUser"
+  handler_route = "lambdas/recipes/get-by-user.handler"
+  gateway_route = "GET /recipes/user/{id}"
+
+  # These shouldn't change probably
+  source = "./modules/lambda-with-gateway"
+  iam_role = aws_iam_role.lambda_exec.arn
+  lambda_layers = [aws_lambda_layer_version.node_modules_layer.arn]
+  source_code_hash = data.archive_file.beer_backend_lambda_zip.output_base64sha256
+  s3_bucket_object_id = aws_s3_bucket_object.beer_backend_lambda_zip.key
+  s3_bucket_id = aws_s3_bucket.lambda_bucket.id
+  api_id = aws_apigatewayv2_api.lambda.id
+  api_execution_arn = aws_apigatewayv2_api.lambda.execution_arn
+}
+
+module "recipe_create_update_lambda" {
+  # Edit these
+  function_name = "RecipeCreateUpdate"
+  handler_route = "lambdas/recipes/create-update.handler"
+  gateway_route = "POST /recipes"
+
+  # These shouldn't change probably
+  source = "./modules/lambda-with-gateway"
+  iam_role = aws_iam_role.lambda_exec.arn
+  lambda_layers = [aws_lambda_layer_version.node_modules_layer.arn]
+  source_code_hash = data.archive_file.beer_backend_lambda_zip.output_base64sha256
+  s3_bucket_object_id = aws_s3_bucket_object.beer_backend_lambda_zip.key
+  s3_bucket_id = aws_s3_bucket.lambda_bucket.id
+  api_id = aws_apigatewayv2_api.lambda.id
+  api_execution_arn = aws_apigatewayv2_api.lambda.execution_arn
+}
+
+module "recipe_delete_lambda" {
+  # Edit these
+  function_name = "RecipeDelete"
+  handler_route = "lambdas/recipes/delete.handler"
+  gateway_route = "DELETE /recipes/{id}"
 
   # These shouldn't change probably
   source = "./modules/lambda-with-gateway"

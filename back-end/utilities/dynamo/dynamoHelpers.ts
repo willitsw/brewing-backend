@@ -16,6 +16,25 @@ const documentClient = new DynamoDB.DocumentClient({
   region: constants.awsRegion,
 });
 
+export const deleteItem = async (
+  id: String,
+  tableName: DynamoTables
+): Promise<void> => {
+  try {
+    await documentClient
+      .delete({
+        Key: {
+          id: id,
+        },
+        TableName: tableName,
+      })
+      .promise();
+    console.log(`Item ${id} deleted from the ${tableName} table.`);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const putItem = async (
   item: DbType,
   tableName: DynamoTables
