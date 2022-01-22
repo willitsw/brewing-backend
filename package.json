@@ -12,7 +12,8 @@
     "dev": "docker-compose up -d && npm run build && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js",
     "build-dev": "webpack --mode development",
     "serve": "webpack serve --mode development",
-    "analyze": "source-map-explorer artifacts/front-end/bundle.js"
+    "analyze": "source-map-explorer artifacts/front-end/bundle.js",
+    "deployFront": "webpack --mode production && aws s3 sync artifacts/front-end s3://www.whatalesyou.net"
   },
   "author": "",
   "license": "ISC",
@@ -43,7 +44,10 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.18.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1"
   }
 }

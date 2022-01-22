@@ -14,9 +14,20 @@ terraform {
     }
   }
 
+  backend "s3" {
+    bucket = "whatalesyou-terraform"
+    key = "prod/terraform.tfstate"
+    region = "us-east-2"
+  }
+
   required_version = "~> 1.0"
 }
 
 provider "aws" {
   region = var.aws_region
+}
+
+provider "aws" {
+  alias = "acm_provider"
+  region = "us-east-1"
 }

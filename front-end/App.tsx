@@ -1,18 +1,11 @@
 import * as React from "react";
 
-interface Props {
-  name: string;
-}
-
-class App extends React.Component<Props> {
-  render() {
-    const { name } = this.props;
-    return (
-      <>
-        <h1>Hello {name}</h1>
-      </>
-    );
-  }
-}
+const App = () => {
+  return (
+    <div className="wrapper">
+      <h1>What Ales You</h1>
+    </div>
+  );
+};
 
 export default App;
