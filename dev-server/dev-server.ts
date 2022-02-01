@@ -1,4 +1,6 @@
 import * as express from "express";
+var cors = require("cors");
+
 const recipesGetById = require("../back-end/lambdas/recipes/get-by-id");
 const recipesCreateUpdate = require("../back-end/lambdas/recipes/create-update");
 const recipesDelete = require("../back-end/lambdas/recipes/delete");
@@ -7,6 +9,7 @@ const recipeQueryByUser = require("../back-end/lambdas/recipes/get-by-user");
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const processRequest = async (lambda, requestObject: express.Request) => {
   return await lambda.handler(

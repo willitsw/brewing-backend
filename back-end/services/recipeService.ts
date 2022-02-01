@@ -1,4 +1,4 @@
-import { IRecipe } from "../../types/beerInterfaces";
+import { Recipe } from "../../types/beerInterfaces";
 import {
   putItem,
   getItem,
@@ -6,17 +6,15 @@ import {
   deleteItem,
 } from "../utilities/dynamo/dynamoHelpers";
 
-export const putRecipe = async (recipe: IRecipe): Promise<void> => {
+export const putRecipe = async (recipe: Recipe): Promise<void> => {
   await putItem(recipe, "recipes");
 };
 
-export const getRecipeById = async (id: string): Promise<IRecipe> => {
+export const getRecipeById = async (id: string): Promise<Recipe> => {
   return await getItem(id, "recipes");
 };
 
-export const queryRecipesByUser = async (
-  userId: string
-): Promise<IRecipe[]> => {
+export const queryRecipesByUser = async (userId: string): Promise<Recipe[]> => {
   return await queryItemsByUser(userId, "recipes");
 };
 

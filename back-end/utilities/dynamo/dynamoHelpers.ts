@@ -66,7 +66,7 @@ export const getItem = async (
       })
       .promise();
     console.log(`Item ${id} retrieved from the ${tableName} table.`);
-    return item;
+    return item.Item;
   } catch (error) {
     throw error;
   }

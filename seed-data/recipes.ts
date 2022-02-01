@@ -1,5 +1,5 @@
 import { DynamoDB } from "aws-sdk";
-import { IRecipe } from "../types/beerInterfaces";
+import { Recipe } from "../types/beerInterfaces";
 import { DynamoTables } from "../types/dynamoTables";
 const tableName: DynamoTables = "recipes";
 
@@ -10,7 +10,7 @@ export const recipeTable: DynamoDB.CreateTableInput = {
   BillingMode: "PAY_PER_REQUEST",
 };
 
-export const recipeSeedData: IRecipe[] = [
+export const recipeSeedData: Recipe[] = [
   {
     id: "1",
     user: "bob",

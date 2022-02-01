@@ -11,10 +11,10 @@ resource "aws_route53_record" "ns-record" {
   zone_id         = aws_route53_zone.main.zone_id
 
   records = [
-    "ns-919.awsdns-50.net",
-    "ns-2004.awsdns-58.co.uk",
-    "ns-273.awsdns-34.com",
-    "ns-1365.awsdns-42.org",
+    "ns-1577.awsdns-05.co.uk",
+    "ns-486.awsdns-60.com",
+    "ns-725.awsdns-26.net",
+    "ns-1429.awsdns-50.org",
   ]
 }
 
@@ -25,7 +25,7 @@ resource "aws_route53_record" "soa-record" {
   type            = "SOA"
   zone_id         = aws_route53_zone.main.zone_id
 
-  records = ["ns-585.awsdns-09.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
+  records = ["ns-1577.awsdns-05.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
 }
 
 resource "aws_route53_record" "root-a" {

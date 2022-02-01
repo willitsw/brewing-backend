@@ -1,6 +1,12 @@
 resource "aws_apigatewayv2_api" "lambda" {
   name          = "beer_lambda_api"
   protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = ["https://www.whatalesyou.net", "https://whatalesyou.net"]
+    allow_methods = ["GET", "PUT", "DELETE"]
+    allow_headers = ["*"]
+    expose_headers = ["*"]
+  }
 }
 
 resource "aws_cloudwatch_log_group" "api_gw" {

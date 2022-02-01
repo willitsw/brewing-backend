@@ -5,8 +5,7 @@
         "outDir": "./artifacts/compiled-ts",
         "baseUrl": "./dev-server",
         "module": "CommonJS",
-        "moduleResolution": "node",
-        "jsx": "react"
+        "moduleResolution": "node"
     },
     "include": [
         "back-end/**/*.ts",
@@ -14,7 +13,6 @@
         "scripts/**/*.ts",
         "seed-data/**/*.ts",
         "back-end/lambdas/**/*.ts",
-        "back-end/constants.ts",
-        "front-end/**/*.tsx"
+        "back-end/constants.ts"
     ]
 }
