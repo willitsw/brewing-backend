@@ -12,84 +12,152 @@ export const recipeTable: DynamoDB.CreateTableInput = {
 
 export const recipeSeedData: Recipe[] = [
   {
-    id: "1",
-    user: "bob",
-    name: "Pale Ale 1",
-    type: "all grain",
-    author: "Jack Flash",
-    batch_size: {
-      unit: "gal",
-      value: 5,
-    },
     efficiency: {
       brewhouse: {
-        unit: "%",
-        value: 55,
-      },
-    },
-    ingredients: {
-      fermentable_additions: [
-        {
-          amount: {
-            unit: "lb",
-            value: 5,
-          },
-          color: {
-            unit: "SRM",
-            value: 2,
-          },
-          name: "Pilsner Malt",
-          type: "grain",
-          yield: {},
-        },
-      ],
-    },
-  },
-  {
-    id: "2",
-    user: "bob",
-    name: "Dunkel Lager",
-    type: "extract",
-    author: "Jack Flash",
-    batch_size: {
-      unit: "gal",
-      value: 3,
-    },
-    efficiency: {
-      brewhouse: {
-        unit: "%",
         value: 60,
+        unit: "%",
       },
     },
+    user: "bob",
     ingredients: {
-      fermentable_additions: [
+      hop_additions: [
         {
+          name: "Calypso",
+          alpha_acid: {
+            unit: "%",
+            value: 11,
+          },
           amount: {
-            unit: "lb",
-            value: 7,
+            value: 1,
+            unit: "oz",
           },
-          color: {
-            unit: "SRM",
-            value: 40,
+          timing: {
+            use: "add_to_boil",
+            time: {
+              value: 4,
+              unit: "min",
+            },
           },
-          name: "Caramel 40L",
-          type: "grain",
-          yield: {},
         },
         {
+          name: "Fuggle",
+          alpha_acid: {
+            unit: "%",
+            value: 12,
+          },
           amount: {
+            value: 2,
+            unit: "oz",
+          },
+          timing: {
+            use: "add_to_fermentation",
+            time: {
+              value: 69,
+              unit: "min",
+            },
+          },
+        },
+        {
+          name: "Summit",
+          alpha_acid: {
+            unit: "%",
+            value: 17.5,
+          },
+          amount: {
+            unit: "oz",
+            value: 1,
+          },
+          timing: {
+            use: "add_to_boil",
+            time: {
+              value: 22,
+              unit: "min",
+            },
+          },
+        },
+      ],
+      fermentable_additions: [
+        {
+          name: "Pilsner (Weyermann)",
+          amount: {
+            value: 5,
             unit: "lb",
-            value: 7,
           },
           color: {
-            unit: "SRM",
             value: 2,
+            unit: "Lovi",
           },
-          name: "Pale Malt",
           type: "grain",
-          yield: {},
+          yield: {
+            potential: {
+              value: 1.038,
+              unit: "sg",
+            },
+          },
+        },
+        {
+          name: "Pale Malt Maris Otter",
+          amount: {
+            value: 5,
+            unit: "lb",
+          },
+          color: {
+            value: 4,
+            unit: "Lovi",
+          },
+          type: "grain",
+          yield: {
+            potential: {
+              value: 1.038,
+              unit: "sg",
+            },
+          },
+        },
+        {
+          name: "Munich Malt",
+          amount: {
+            value: 4,
+            unit: "lb",
+          },
+          color: {
+            value: 6,
+            unit: "Lovi",
+          },
+          type: "grain",
+          yield: {
+            potential: {
+              value: null,
+              unit: "sg",
+            },
+          },
+        },
+        {
+          name: "Acid Malt",
+          amount: {
+            value: 0.5,
+            unit: "lb",
+          },
+          color: {
+            value: 3,
+            unit: "Lovi",
+          },
+          type: "grain",
+          yield: {
+            potential: {
+              value: 1.027,
+              unit: "sg",
+            },
+          },
         },
       ],
     },
+    id: "3",
+    name: "Maibock 2021",
+    batch_size: {
+      value: 4.5,
+      unit: "gal",
+    },
+    author: "Bill",
+    type: "all grain",
   },
 ];

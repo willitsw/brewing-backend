@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import * as express from "express";
-import cors = require("cors");
+const cors = require("cors");
 
-import recipesGetById = require("../lambdas/recipes/get-by-id");
-import recipesCreateUpdate = require("../lambdas/recipes/create-update");
-import recipesDelete = require("../lambdas/recipes/delete");
-import recipeQueryByUser = require("../lambdas/recipes/get-by-user");
+const recipesGetById = require("../lambdas/recipes/get-by-id");
+const recipesCreateUpdate = require("../lambdas/recipes/create-update");
+const recipesDelete = require("../lambdas/recipes/delete");
+const recipeQueryByUser = require("../lambdas/recipes/get-by-user");
 
 const app = express();
 

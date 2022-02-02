@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rm -rf artifacts && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildLocalDynamo": "tsc & node artifacts/compiled-ts/scripts/buildDynamo",
-    "destroyLocalDynamo": "tsc & node artifacts/compiled-ts/scripts/destroyDynamo",
+    "buildDynamo": "tsc && node artifacts/compiled-ts/scripts/buildDynamo",
+    "destroyDynamo": "tsc && node artifacts/compiled-ts/scripts/destroyDynamo",
     "dev": "docker-compose up -d && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js",
     "webpack": "webpack --mode production",
     "deploy": "zsh scripts/deploy-lambda.zsh"

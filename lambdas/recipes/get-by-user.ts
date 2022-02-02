@@ -1,7 +1,7 @@
 import { isEmptyOrNullObject } from "../../utilities/misc";
 import { queryRecipesByUser } from "../../services/recipeService";
-import SuccessResponse from "../lambda-responses/success-response";
-import NotFoundResponse from "../lambda-responses/not-found-response";
+import SuccessResponse from "../../types/lambda-responses/success-response";
+import NotFoundResponse from "../../types/lambda-responses/not-found-response";
 
 module.exports.handler = async (event) => {
   const id = event.pathParameters.id;

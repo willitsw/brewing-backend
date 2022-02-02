@@ -1,4 +1,4 @@
-import { Recipe } from "../../types/beerInterfaces";
+import { Recipe } from "../types/beerInterfaces";
 import {
   putItem,
   getItem,
@@ -11,11 +11,11 @@ export const putRecipe = async (recipe: Recipe): Promise<void> => {
 };
 
 export const getRecipeById = async (id: string): Promise<Recipe> => {
-  return await getItem(id, "recipes");
+  return (await getItem(id, "recipes")) as Recipe;
 };
 
 export const queryRecipesByUser = async (userId: string): Promise<Recipe[]> => {
-  return await queryItemsByUser(userId, "recipes");
+  return (await queryItemsByUser(userId, "recipes")) as Recipe[];
 };
 
 export const deleteRecipe = async (id: string): Promise<void> => {
