@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const ZipPlugin = require("zip-webpack-plugin");
 const path = require("path");
 
