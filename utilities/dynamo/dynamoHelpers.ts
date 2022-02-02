@@ -1,6 +1,6 @@
 import { DynamoDB } from "aws-sdk";
-import { DbType } from "../../../types/beerInterfaces";
-import { DynamoTables } from "../../../types/dynamoTables";
+import { DbType } from "../../types/beerInterfaces";
+import { DynamoTables } from "../../types/dynamoTables";
 import { constants } from "../../constants";
 
 const dynamoClient = new DynamoDB({

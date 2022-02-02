@@ -7,12 +7,10 @@ const config = {
   //what are the entry points to our functions
   entry: {
     RecipeCreateUpdate:
-      "./artifacts/compiled-ts/back-end/lambdas/recipes/create-update.js",
-    RecipeDelete: "./artifacts/compiled-ts/back-end/lambdas/recipes/delete.js",
-    RecipeGetById:
-      "./artifacts/compiled-ts/back-end/lambdas/recipes/get-by-id.js",
-    RecipeGetByUser:
-      "./artifacts/compiled-ts/back-end/lambdas/recipes/get-by-user.js",
+      "./artifacts/compiled-ts/lambdas/recipes/create-update.js",
+    RecipeDelete: "./artifacts/compiled-ts/lambdas/recipes/delete.js",
+    RecipeGetById: "./artifacts/compiled-ts/lambdas/recipes/get-by-id.js",
+    RecipeGetByUser: "./artifacts/compiled-ts/lambdas/recipes/get-by-user.js",
   },
   //how we want the output
   output: {
