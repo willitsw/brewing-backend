@@ -1,5 +1,4 @@
 import { DynamoDB } from "aws-sdk";
-import { String } from "aws-sdk/clients/appstream";
 import { DbType } from "../../../types/beerInterfaces";
 import { DynamoTables } from "../../../types/dynamoTables";
 import { constants } from "../../constants";
@@ -17,7 +16,7 @@ const documentClient = new DynamoDB.DocumentClient({
 });
 
 export const deleteItem = async (
-  id: String,
+  id: string,
   tableName: DynamoTables
 ): Promise<void> => {
   try {
@@ -53,7 +52,7 @@ export const putItem = async (
 };
 
 export const getItem = async (
-  id: String,
+  id: string,
   tableName: DynamoTables
 ): Promise<any> => {
   try {
@@ -73,7 +72,7 @@ export const getItem = async (
 };
 
 export const queryItemsByUser = async (
-  userId: String,
+  userId: string,
   tableName: DynamoTables
 ): Promise<any> => {
   try {
