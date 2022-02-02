@@ -1,10 +1,10 @@
 import * as express from "express";
-var cors = require("cors");
+import cors = require("cors");
 
-const recipesGetById = require("../back-end/lambdas/recipes/get-by-id");
-const recipesCreateUpdate = require("../back-end/lambdas/recipes/create-update");
-const recipesDelete = require("../back-end/lambdas/recipes/delete");
-const recipeQueryByUser = require("../back-end/lambdas/recipes/get-by-user");
+import recipesGetById = require("../lambdas/recipes/get-by-id");
+import recipesCreateUpdate = require("../lambdas/recipes/create-update");
+import recipesDelete = require("../lambdas/recipes/delete");
+import recipeQueryByUser = require("../lambdas/recipes/get-by-user");
 
 const app = express();
 
@@ -35,7 +35,7 @@ app.get("/", (request, response) => {
 app.get(
   "/recipes/:id",
   async (request: express.Request, response: express.Response) => {
-    let data = await processRequest(recipesGetById, request);
+    const data = await processRequest(recipesGetById, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );
@@ -43,7 +43,7 @@ app.get(
 app.get(
   "/recipes/user/:id",
   async (request: express.Request, response: express.Response) => {
-    let data = await processRequest(recipeQueryByUser, request);
+    const data = await processRequest(recipeQueryByUser, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );
@@ -51,7 +51,7 @@ app.get(
 app.post(
   "/recipes",
   async (request: express.Request, response: express.Response) => {
-    let data = await processRequest(recipesCreateUpdate, request);
+    const data = await processRequest(recipesCreateUpdate, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );
@@ -59,13 +59,13 @@ app.post(
 app.delete(
   "/recipes/:id",
   async (request: express.Request, response: express.Response) => {
-    let data = await processRequest(recipesDelete, request);
+    const data = await processRequest(recipesDelete, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );
 
 app.listen(5000, () => {
-  console.log(`Beer-backend is running on port 5000`);
+  console.log("Beer-backend is running on port 5000");
 });
 
 export default app;

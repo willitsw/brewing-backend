@@ -1,3 +1,3 @@
-import { deleteDynamoTable } from "../back-end/utilities/dynamo/dynamoHelpers";
+import { deleteDynamoTable } from "../utilities/dynamo/dynamoHelpers";
 
 deleteDynamoTable("recipes");

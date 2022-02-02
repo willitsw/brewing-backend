@@ -1,7 +1,4 @@
-import {
-  createDynamoTable,
-  putItem,
-} from "../back-end/utilities/dynamo/dynamoHelpers";
+import { createDynamoTable, putItem } from "../utilities/dynamo/dynamoHelpers";
 import { recipeSeedData } from "../seed-data/recipes";
 
 const buildDynamoTables = async () => {
