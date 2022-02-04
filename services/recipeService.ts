@@ -4,7 +4,7 @@ import {
   getItem,
   queryItemsByUser,
   deleteItem,
-} from "../utilities/dynamo/dynamoHelpers";
+} from "../utilities/dynamo-helpers";
 
 export const putRecipe = async (recipe: Recipe): Promise<void> => {
   await putItem(recipe, "recipes");

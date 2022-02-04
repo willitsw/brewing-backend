@@ -13,3 +13,6 @@ terraform/.terraform
 docker
 
 .vscode
+
+.envrc
+/secure
