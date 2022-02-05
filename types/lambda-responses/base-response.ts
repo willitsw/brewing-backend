@@ -1,6 +1,4 @@
-import { StatusCode } from "aws-sdk/clients/apigateway";
-
-type StatusCodes = 200 | 500 | 404;
+type StatusCodes = 200 | 500 | 404 | 401;
 
 interface LambdaResponseInterface {
   statusCode: StatusCodes;

@@ -18,6 +18,9 @@ const processRequest = async (lambda, requestObject: express.Request) => {
       pathParameters: requestObject.params,
       queryStringParameters: requestObject.query,
       body: JSON.stringify(requestObject.body),
+      headers: {
+        authorization: requestObject.headers?.authorization || "",
+      },
     }, // event
     {}, // content
     (error, result) => {
@@ -42,7 +45,7 @@ app.get(
 );
 
 app.get(
-  "/recipes/user/:id",
+  "/recipes",
   async (request: express.Request, response: express.Response) => {
     const data = await processRequest(recipeQueryByUser, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
