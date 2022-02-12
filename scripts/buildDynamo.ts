@@ -6,6 +6,7 @@ const buildDynamoTables = async () => {
   recipeSeedData.forEach(async (item) => {
     await putItem(item, "recipes");
   });
+  await createDynamoTable("brew-settings");
 };
 
 buildDynamoTables();

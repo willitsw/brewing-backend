@@ -11,6 +11,12 @@ const config = {
     RecipeDelete: "./artifacts/compiled-ts/lambdas/recipes/delete.js",
     RecipeGetById: "./artifacts/compiled-ts/lambdas/recipes/get-by-id.js",
     RecipeGetByUser: "./artifacts/compiled-ts/lambdas/recipes/get-by-user.js",
+    BrewSettingsCreateUpdate:
+      "./artifacts/compiled-ts/lambdas/brew-settings/create-update.js",
+    BrewSettingsDelete:
+      "./artifacts/compiled-ts/lambdas/brew-settings/delete.js",
+    BrewSettingsGetById:
+      "./artifacts/compiled-ts/lambdas/brew-settings/get-by-id.js",
   },
   //how we want the output
   output: {

@@ -2,11 +2,6 @@
 import * as express from "express";
 const cors = require("cors");
 
-const recipesGetById = require("../lambdas/recipes/get-by-id");
-const recipesCreateUpdate = require("../lambdas/recipes/create-update");
-const recipesDelete = require("../lambdas/recipes/delete");
-const recipeQueryByUser = require("../lambdas/recipes/get-by-user");
-
 const app = express();
 
 app.use(express.json());
@@ -35,6 +30,11 @@ app.get("/", (request, response) => {
 });
 
 // RECIPE ENDPOINTS =======================================================
+
+const recipesGetById = require("../lambdas/recipes/get-by-id");
+const recipesCreateUpdate = require("../lambdas/recipes/create-update");
+const recipesDelete = require("../lambdas/recipes/delete");
+const recipeQueryByUser = require("../lambdas/recipes/get-by-user");
 
 app.get(
   "/recipes/:id",
@@ -68,8 +68,41 @@ app.delete(
   }
 );
 
+// BEER SETTINGS ENDPOINTS =======================================================
+
+const brewSettingsGetById = require("../lambdas/brew-settings/get-by-id");
+const brewSettingsCreateUpdate = require("../lambdas/brew-settings/create-update");
+const brewSettingsDelete = require("../lambdas/brew-settings/delete");
+
+app.get(
+  "/beer-settings/:id",
+  async (request: express.Request, response: express.Response) => {
+    const data = await processRequest(brewSettingsGetById, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.post(
+  "/beer-settings",
+  async (request: express.Request, response: express.Response) => {
+    const data = await processRequest(brewSettingsCreateUpdate, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.delete(
+  "/beer-settings/:id",
+  async (request: express.Request, response: express.Response) => {
+    const data = await processRequest(brewSettingsDelete, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+// MISC =======================================================
+
 app.listen(5000, () => {
   console.log("Beer-backend is running on port 5000");
 });
+
 
 export default app;

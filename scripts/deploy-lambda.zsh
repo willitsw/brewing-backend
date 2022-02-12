@@ -31,4 +31,19 @@ aws lambda update-function-code \
     --s3-bucket loudly-noticeably-allowing-goldfish \
     --s3-key RecipeGetByUser.zip
 
+aws lambda update-function-code \
+    --function-name  BrewSettingsCreateUpdate \
+    --s3-bucket loudly-noticeably-allowing-goldfish \
+    --s3-key BrewSettingsCreateUpdate.zip
+
+aws lambda update-function-code \
+    --function-name  BrewSettingsDelete \
+    --s3-bucket loudly-noticeably-allowing-goldfish \
+    --s3-key BrewSettingsDelete.zip
+
+aws lambda update-function-code \
+    --function-name  BrewSettingsGetById \
+    --s3-bucket loudly-noticeably-allowing-goldfish \
+    --s3-key BrewSettingsGetById.zip
+
 echo "Deploy Complete"
