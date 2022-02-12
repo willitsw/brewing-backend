@@ -14,36 +14,60 @@ export const recipeSeedData: Recipe[] = [
   {
     efficiency: {
       brewhouse: {
-        value: 60,
+        value: 70,
         unit: "%",
       },
     },
-    user: "bob",
+    batch_size: {
+      value: 5,
+      unit: "gal",
+    },
+    author: "Jon Diddly",
+    name: "Pale Ale",
+    description: "A classic IPA",
     ingredients: {
       hop_additions: [
         {
-          name: "Calypso",
+          name: "Centennial",
           alpha_acid: {
+            value: 10.5,
             unit: "%",
-            value: 11,
           },
           amount: {
-            value: 1,
+            value: 2,
             unit: "oz",
           },
           timing: {
             use: "add_to_boil",
             time: {
-              value: 4,
+              value: 60,
               unit: "min",
             },
           },
         },
         {
-          name: "Fuggle",
+          name: "Cascade",
           alpha_acid: {
+            value: 6,
             unit: "%",
-            value: 12,
+          },
+          amount: {
+            value: 2,
+            unit: "oz",
+          },
+          timing: {
+            use: "add_to_boil",
+            time: {
+              value: 30,
+              unit: "min",
+            },
+          },
+        },
+        {
+          name: "Centennial",
+          alpha_acid: {
+            value: 10.5,
+            unit: "%",
           },
           amount: {
             value: 2,
@@ -52,25 +76,7 @@ export const recipeSeedData: Recipe[] = [
           timing: {
             use: "add_to_fermentation",
             time: {
-              value: 69,
-              unit: "min",
-            },
-          },
-        },
-        {
-          name: "Summit",
-          alpha_acid: {
-            unit: "%",
-            value: 17.5,
-          },
-          amount: {
-            unit: "oz",
-            value: 1,
-          },
-          timing: {
-            use: "add_to_boil",
-            time: {
-              value: 22,
+              value: 0,
               unit: "min",
             },
           },
@@ -78,63 +84,9 @@ export const recipeSeedData: Recipe[] = [
       ],
       fermentable_additions: [
         {
-          name: "Pilsner (Weyermann)",
+          name: "Pale Ale Malt",
           amount: {
-            value: 5,
-            unit: "lb",
-          },
-          color: {
-            value: 2,
-            unit: "Lovi",
-          },
-          type: "grain",
-          yield: {
-            potential: {
-              value: 1.038,
-              unit: "sg",
-            },
-          },
-        },
-        {
-          name: "Pale Malt Maris Otter",
-          amount: {
-            value: 5,
-            unit: "lb",
-          },
-          color: {
-            value: 4,
-            unit: "Lovi",
-          },
-          type: "grain",
-          yield: {
-            potential: {
-              value: 1.038,
-              unit: "sg",
-            },
-          },
-        },
-        {
-          name: "Munich Malt",
-          amount: {
-            value: 4,
-            unit: "lb",
-          },
-          color: {
-            value: 6,
-            unit: "Lovi",
-          },
-          type: "grain",
-          yield: {
-            potential: {
-              value: null,
-              unit: "sg",
-            },
-          },
-        },
-        {
-          name: "Acid Malt",
-          amount: {
-            value: 0.5,
+            value: 12,
             unit: "lb",
           },
           color: {
@@ -144,20 +96,44 @@ export const recipeSeedData: Recipe[] = [
           type: "grain",
           yield: {
             potential: {
-              value: 1.027,
+              value: 1.036,
+              unit: "sg",
+            },
+          },
+        },
+        {
+          name: "Caramel/Crystal Malt - 15L",
+          amount: {
+            value: 1,
+            unit: "lb",
+          },
+          color: {
+            value: 15,
+            unit: "Lovi",
+          },
+          type: "grain",
+          yield: {
+            potential: {
+              value: 1.035,
               unit: "sg",
             },
           },
         },
       ],
+      culture_additions: [
+        {
+          name: "US-05",
+          attenuation: {
+            value: 77,
+            unit: "%",
+          },
+          form: "liquid",
+          type: "ale",
+        },
+      ],
     },
-    id: "3",
-    name: "Maibock 2021",
-    batch_size: {
-      value: 4.5,
-      unit: "gal",
-    },
-    author: "Bill",
+    id: "9673094b-799f-483f-bf20-9455063233d7",
     type: "all grain",
+    user: "123456789",
   },
 ];
