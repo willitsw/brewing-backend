@@ -1,12 +1,13 @@
 import { createDynamoTable, putItem } from "../utilities/dynamo-helpers";
-import { recipeSeedData } from "../seed-data/recipes";
+import { recipeSeedData, recipeTable } from "./dynamo-data/recipes";
+import { brewSettingsTable } from "./dynamo-data/brew-settings";
 
 const buildDynamoTables = async () => {
-  await createDynamoTable("recipes");
+  await createDynamoTable("recipes", recipeTable);
   recipeSeedData.forEach(async (item) => {
     await putItem(item, "recipes");
   });
-  await createDynamoTable("brew-settings");
+  await createDynamoTable("brew-settings", brewSettingsTable);
 };
 
 buildDynamoTables();

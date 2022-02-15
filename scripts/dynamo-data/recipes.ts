@@ -1,13 +1,25 @@
 import { DynamoDB } from "aws-sdk";
-import { Recipe } from "../types/beerInterfaces";
-import { DynamoTables } from "../types/dynamoTables";
+import { Recipe } from "../../types/beerInterfaces";
+import { DynamoTables } from "../../types/dynamoTables";
 const tableName: DynamoTables = "recipes";
 
 export const recipeTable: DynamoDB.CreateTableInput = {
   TableName: tableName,
   KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
-  AttributeDefinitions: [{ AttributeName: "id", AttributeType: "S" }],
+  AttributeDefinitions: [
+    { AttributeName: "id", AttributeType: "S" },
+    { AttributeName: "user", AttributeType: "S" },
+  ],
   BillingMode: "PAY_PER_REQUEST",
+  GlobalSecondaryIndexes: [
+    {
+      IndexName: "userIndex",
+      KeySchema: [{ AttributeName: "user", KeyType: "HASH" }],
+      Projection: {
+        ProjectionType: "ALL",
+      },
+    },
+  ],
 };
 
 export const recipeSeedData: Recipe[] = [

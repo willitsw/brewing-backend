@@ -77,28 +77,10 @@ export const queryItemsByUser = async (
 };
 
 export const createDynamoTable = async (
-  tableName: DynamoTables
+  tableName: DynamoTables,
+  tableConfig: DynamoDB.CreateTableInput
 ): Promise<void> => {
-  await dynamoClient
-    .createTable({
-      TableName: tableName,
-      KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
-      AttributeDefinitions: [
-        { AttributeName: "id", AttributeType: "S" },
-        { AttributeName: "user", AttributeType: "S" },
-      ],
-      BillingMode: "PAY_PER_REQUEST",
-      GlobalSecondaryIndexes: [
-        {
-          IndexName: "userIndex",
-          KeySchema: [{ AttributeName: "user", KeyType: "HASH" }],
-          Projection: {
-            ProjectionType: "ALL",
-          },
-        },
-      ],
-    })
-    .promise();
+  await dynamoClient.createTable(tableConfig).promise();
   console.log(`Dynamo table ${tableName} created successfully.`);
 };
 

@@ -1,5 +1,5 @@
 import { DynamoDB } from "aws-sdk";
-import { DynamoTables } from "../types/dynamoTables";
+import { DynamoTables } from "../../types/dynamoTables";
 const tableName: DynamoTables = "brew-settings";
 
 export const brewSettingsTable: DynamoDB.CreateTableInput = {
