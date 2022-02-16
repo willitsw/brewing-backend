@@ -1,9 +1,9 @@
 import { DynamoDB } from "aws-sdk";
-import { Recipe } from "../../types/beerInterfaces";
-import { DynamoTables } from "../../types/dynamoTables";
+import { Recipe } from "../../types/recipe";
+import { DynamoTables } from "../../types/dynamo-tables";
 const tableName: DynamoTables = "recipes";
 
-export const recipeTable: DynamoDB.CreateTableInput = {
+export const recipeTableConfig: DynamoDB.CreateTableInput = {
   TableName: tableName,
   KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
   AttributeDefinitions: [

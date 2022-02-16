@@ -1,6 +1,5 @@
 import { DynamoDB } from "aws-sdk";
-import { DbType } from "../types/beerInterfaces";
-import { DynamoTables } from "../types/dynamoTables";
+import { DynamoTables } from "../types/dynamo-tables";
 import { constants } from "../constants";
 
 const dynamoClient = new DynamoDB({
@@ -17,12 +16,13 @@ const documentClient = new DynamoDB.DocumentClient({
 
 export const deleteItem = async (
   id: string,
-  tableName: DynamoTables
+  tableName: DynamoTables,
+  key: string
 ): Promise<void> => {
   await documentClient
     .delete({
       Key: {
-        id: id,
+        [key]: id,
       },
       TableName: tableName,
     })
@@ -31,7 +31,7 @@ export const deleteItem = async (
 };
 
 export const putItem = async (
-  item: DbType,
+  item: any,
   tableName: DynamoTables
 ): Promise<void> => {
   await documentClient
@@ -44,19 +44,25 @@ export const putItem = async (
 };
 
 export const getItem = async (
-  id: string,
-  tableName: DynamoTables
+  pk: string,
+  tableName: DynamoTables,
+  key: string
 ): Promise<DynamoDB.DocumentClient.AttributeMap> => {
   const item = await documentClient
     .get({
       TableName: tableName,
       Key: {
-        id: id,
+        [key]: pk,
       },
     })
     .promise();
-  console.log(`Item ${id} retrieved from the ${tableName} table.`);
-  return item.Item;
+  const result = item.Item;
+  if (result) {
+    console.log(`Item ${pk} retrieved from the ${tableName} table.`);
+  } else {
+    console.log(`Item ${pk} not found in the ${tableName} table.`);
+  }
+  return result;
 };
 
 export const queryItemsByUser = async (
@@ -72,7 +78,11 @@ export const queryItemsByUser = async (
       ExpressionAttributeValues: { ":userFromQuery": userId },
     })
     .promise();
-  console.log(`Items for ${userId} retrieved from the ${tableName} table.`);
+  if (result) {
+    console.log(`Items for ${userId} retrieved from the ${tableName} table.`);
+  } else {
+    console.log(`Items for ${userId} not found in the ${tableName} table.`);
+  }
   return result.Items;
 };
 

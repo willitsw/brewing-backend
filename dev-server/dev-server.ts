@@ -75,7 +75,7 @@ const brewSettingsCreateUpdate = require("../lambdas/brew-settings/create-update
 const brewSettingsDelete = require("../lambdas/brew-settings/delete");
 
 app.get(
-  "/beer-settings/:id",
+  "/brew-settings",
   async (request: express.Request, response: express.Response) => {
     const data = await processRequest(brewSettingsGetById, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
@@ -83,7 +83,7 @@ app.get(
 );
 
 app.post(
-  "/beer-settings",
+  "/brew-settings",
   async (request: express.Request, response: express.Response) => {
     const data = await processRequest(brewSettingsCreateUpdate, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
@@ -91,7 +91,7 @@ app.post(
 );
 
 app.delete(
-  "/beer-settings/:id",
+  "/brew-settings",
   async (request: express.Request, response: express.Response) => {
     const data = await processRequest(brewSettingsDelete, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
@@ -103,6 +103,5 @@ app.delete(
 app.listen(5000, () => {
   console.log("Beer-backend is running on port 5000");
 });
-
 
 export default app;

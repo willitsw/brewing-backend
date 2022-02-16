@@ -1,9 +1,12 @@
-import { queryRecipesByUser } from "../../services/recipeService";
+import { queryRecipesByUser } from "../../services/recipe-service";
 import SuccessResponse from "../../types/lambda-responses/success-response";
-import { getUidFromToken } from "../../utilities/auth-helpers";
+import { decodeToken } from "../../utilities/auth-helpers";
+import { withErrorBoundary } from "../../utilities/error-boundary";
 
 module.exports.handler = async (event) => {
-  const id = getUidFromToken(event.headers.authorization);
-  const result = await queryRecipesByUser(id);
-  return new SuccessResponse(result);
+  return await withErrorBoundary(async () => {
+    const id = decodeToken(event.headers.authorization).userId;
+    const result = await queryRecipesByUser(id);
+    return new SuccessResponse(result);
+  });
 };

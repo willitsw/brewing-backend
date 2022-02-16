@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rm -rf artifacts && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildDynamo": "tsc && node artifacts/compiled-ts/scripts/buildDynamo",
-    "destroyDynamo": "tsc && node artifacts/compiled-ts/scripts/destroyDynamo",
+    "build-dynamo": "tsc && node artifacts/compiled-ts/scripts/build-dynamo",
+    "destroy-dynamo": "tsc && node artifacts/compiled-ts/scripts/destroy-dynamo",
     "dev": "docker-compose up -d && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js",
     "webpack": "webpack --mode production",
     "deploy": "zsh scripts/deploy-lambda.zsh"
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.1061.0",
-    "jwt-decode": "^3.1.2"
+    "jwt-decode": "^3.1.2",
+    "uuid": "^8.3.2"
   }
 }

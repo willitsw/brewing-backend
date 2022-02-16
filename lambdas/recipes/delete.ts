@@ -1,15 +1,18 @@
-import { deleteRecipe, getRecipeById } from "../../services/recipeService";
+import { deleteRecipe, getRecipeById } from "../../services/recipe-service";
 import SuccessResponse from "../../types/lambda-responses/success-response";
 import UnauthorizedResponse from "../../types/lambda-responses/unauthorized-responxe";
-import { getUidFromToken } from "../../utilities/auth-helpers";
+import { decodeToken } from "../../utilities/auth-helpers";
+import { withErrorBoundary } from "../../utilities/error-boundary";
 
 module.exports.handler = async (event) => {
-  const userId = getUidFromToken(event.headers.authorization);
-  const id = event.pathParameters.id;
-  const recipe = await getRecipeById(id);
-  if (recipe.user !== userId) {
-    return new UnauthorizedResponse();
-  }
-  await deleteRecipe(id);
-  return new SuccessResponse();
+  return await withErrorBoundary(async () => {
+    const userId = decodeToken(event.headers.authorization).userId;
+    const id = event.pathParameters.id;
+    const recipe = await getRecipeById(id);
+    if (recipe.user !== userId) {
+      return new UnauthorizedResponse();
+    }
+    await deleteRecipe(id);
+    return new SuccessResponse();
+  });
 };
