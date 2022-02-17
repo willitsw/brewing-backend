@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-echo "compiling TS"
+echo "Compiling TS to JS"
 rm -rf artifacts && tsc
 
 echo "Bundling zip files"
@@ -42,8 +42,8 @@ aws lambda update-function-code \
     --s3-key BrewSettingsDelete.zip
 
 aws lambda update-function-code \
-    --function-name  BrewSettingsGetById \
+    --function-name  BrewSettingsGet \
     --s3-bucket loudly-noticeably-allowing-goldfish \
-    --s3-key BrewSettingsGetById.zip
+    --s3-key BrewSettingsGet.zip
 
 echo "Deploy Complete"

@@ -15,8 +15,7 @@ const config = {
       "./artifacts/compiled-ts/lambdas/brew-settings/create-update.js",
     BrewSettingsDelete:
       "./artifacts/compiled-ts/lambdas/brew-settings/delete.js",
-    BrewSettingsGetById:
-      "./artifacts/compiled-ts/lambdas/brew-settings/get-by-id.js",
+    BrewSettingsGet: "./artifacts/compiled-ts/lambdas/brew-settings/get.js",
   },
   //how we want the output
   output: {
