@@ -34,7 +34,7 @@ export const getBrewSettingById = async (
       kettleTrubWaterLoss: 0.25,
       measurementType: "imperial",
       userId: user.userId,
-      waterLossPerGrain: 0.125,
+      waterLossPerGrain: 0.1,
     };
     await putBrewSetting(newBrewSettings);
     return newBrewSettings;
