@@ -70,7 +70,7 @@ app.delete(
 
 // BEER SETTINGS ENDPOINTS =======================================================
 
-const brewSettingsGetById = require("../lambdas/brew-settings/get-by-id");
+const brewSettingsGetById = require("../lambdas/brew-settings/get");
 const brewSettingsCreateUpdate = require("../lambdas/brew-settings/create-update");
 const brewSettingsDelete = require("../lambdas/brew-settings/delete");
 

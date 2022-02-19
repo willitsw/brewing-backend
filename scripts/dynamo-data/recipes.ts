@@ -24,128 +24,61 @@ export const recipeTableConfig: DynamoDB.CreateTableInput = {
 
 export const recipeSeedData: Recipe[] = [
   {
-    efficiency: {
-      brewhouse: {
-        value: 70,
-        unit: "%",
-      },
-    },
-    batch_size: {
-      value: 5,
-      unit: "gal",
-    },
+    efficiency: 70,
+    batchSize: 5,
     author: "Jon Diddly",
     name: "Pale Ale",
     description: "A classic IPA",
-    ingredients: {
-      hop_additions: [
-        {
-          name: "Centennial",
-          alpha_acid: {
-            value: 10.5,
-            unit: "%",
-          },
-          amount: {
-            value: 2,
-            unit: "oz",
-          },
-          timing: {
-            use: "add_to_boil",
-            time: {
-              value: 60,
-              unit: "min",
-            },
-          },
-        },
-        {
-          name: "Cascade",
-          alpha_acid: {
-            value: 6,
-            unit: "%",
-          },
-          amount: {
-            value: 2,
-            unit: "oz",
-          },
-          timing: {
-            use: "add_to_boil",
-            time: {
-              value: 30,
-              unit: "min",
-            },
-          },
-        },
-        {
-          name: "Centennial",
-          alpha_acid: {
-            value: 10.5,
-            unit: "%",
-          },
-          amount: {
-            value: 2,
-            unit: "oz",
-          },
-          timing: {
-            use: "add_to_fermentation",
-            time: {
-              value: 0,
-              unit: "min",
-            },
-          },
-        },
-      ],
-      fermentable_additions: [
-        {
-          name: "Pale Ale Malt",
-          amount: {
-            value: 12,
-            unit: "lb",
-          },
-          color: {
-            value: 3,
-            unit: "Lovi",
-          },
-          type: "grain",
-          yield: {
-            potential: {
-              value: 1.036,
-              unit: "sg",
-            },
-          },
-        },
-        {
-          name: "Caramel/Crystal Malt - 15L",
-          amount: {
-            value: 1,
-            unit: "lb",
-          },
-          color: {
-            value: 15,
-            unit: "Lovi",
-          },
-          type: "grain",
-          yield: {
-            potential: {
-              value: 1.035,
-              unit: "sg",
-            },
-          },
-        },
-      ],
-      culture_additions: [
-        {
-          name: "US-05",
-          attenuation: {
-            value: 77,
-            unit: "%",
-          },
-          form: "liquid",
-          type: "ale",
-        },
-      ],
-    },
+    hops: [
+      {
+        name: "Centennial",
+        alphaAcid: 10.5,
+        amount: 2,
+        timing: 60,
+        use: "Boil",
+      },
+      {
+        name: "Cascade",
+        alphaAcid: 6,
+        amount: 2,
+        timing: 30,
+        use: "Boil",
+      },
+      {
+        name: "Centennial",
+        alphaAcid: 10.5,
+        amount: 2,
+        timing: 0,
+        use: "Flame out",
+      },
+    ],
+    fermentables: [
+      {
+        name: "Pale Ale Malt",
+        amount: 12,
+        lovibond: 3,
+        type: "Grain",
+        gravity: 1.036,
+      },
+      {
+        name: "Caramel/Crystal Malt - 15L",
+        amount: 1,
+        lovibond: 15,
+        type: "Grain",
+        gravity: 1.035,
+      },
+    ],
+    cultures: [
+      {
+        name: "US-05",
+        attenuation: 77,
+        form: "Liquid",
+        type: "Ale",
+      },
+    ],
     id: "9673094b-799f-483f-bf20-9455063233d7",
-    type: "all grain",
+    type: "All grain",
     user: "123456789",
+    measurementType: "imperial",
   },
 ];
