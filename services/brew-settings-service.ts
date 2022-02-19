@@ -35,6 +35,8 @@ export const getBrewSettingById = async (
       measurementType: "imperial",
       userId: user.userId,
       waterLossPerGrain: 0.1,
+      sparge: false,
+      mashThickness: 1.3,
     };
     await putBrewSetting(newBrewSettings);
     return newBrewSettings;
