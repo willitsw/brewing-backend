@@ -1,6 +1,5 @@
 import { BrewSettings } from "../types/brew-settings";
 import { FirebaseUser } from "../types/firebase-user";
-import NotFoundResponse from "../types/lambda-responses/not-found-response";
 import { putItem, getItem, deleteItem } from "../utilities/dynamo-helpers";
 
 export const putBrewSetting = async (
@@ -34,7 +33,7 @@ export const getBrewSettingById = async (
       kettleTrubWaterLoss: 0.25,
       measurementType: "imperial",
       userId: user.userId,
-      waterLossPerGrain: 0.1,
+      waterLossPerGrain: 0.5,
       sparge: false,
       mashThickness: 1.3,
     };
