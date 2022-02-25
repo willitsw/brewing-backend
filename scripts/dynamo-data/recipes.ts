@@ -73,7 +73,7 @@ export const recipeSeedData: Recipe[] = [
         name: "US-05",
         attenuation: 77,
         form: "Liquid",
-        type: "Ale",
+        notes: "",
       },
     ],
     id: "9673094b-799f-483f-bf20-9455063233d7",
