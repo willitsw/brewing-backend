@@ -80,5 +80,6 @@ export const recipeSeedData: Recipe[] = [
     type: "All grain",
     user: "123456789",
     measurementType: "imperial",
+    nonFermentables: [],
   },
 ];
