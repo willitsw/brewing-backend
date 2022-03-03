@@ -2,6 +2,19 @@ import { MeasurementType } from "./brew-settings";
 
 export type RecipeType = "Other" | "Extract" | "Partial mash" | "All grain";
 
+export enum Step {
+  StrikeWater = "Strike Water",
+  Mash = "Mash",
+  Boil = "Boil",
+  Fermentor = "Fermentor",
+  Bottle = "Bottle",
+}
+export interface IngredientType {
+  step: Step;
+  timing: number;
+  notes: string;
+}
+
 export interface Recipe {
   id: string;
   user: string;
@@ -30,34 +43,29 @@ export type FermentableType =
   | "Juice"
   | "Honey";
 
-export interface Fermentable {
+export interface Fermentable extends IngredientType {
   name: string;
   lovibond: number;
   type: FermentableType;
   gravity: number;
   amount: number;
 }
-
-export type HopUsageType = "Boil" | "Flame out" | "Dry hop";
-
-export interface Hop {
+export interface Hop extends IngredientType {
   name: string;
   alphaAcid: number;
-  timing: number;
-  use: HopUsageType;
   amount: number;
 }
 
 export type CultureForm = "Liquid" | "Dry";
 
-export interface Culture {
+export interface Culture extends IngredientType {
   name: string;
   attenuation: number;
   form: CultureForm;
   notes: string;
 }
 
-export interface NonFermentable {
+export interface NonFermentable extends IngredientType {
   name: string;
   amount: string;
   notes: string;
