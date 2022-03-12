@@ -10,7 +10,7 @@
     "destroy-dynamo": "tsc && node artifacts/compiled-ts/scripts/destroy-dynamo",
     "dev": "docker-compose up -d && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js",
     "webpack": "webpack --mode production",
-    "deploy": "zsh scripts/deploy-lambda.zsh"
+    "deploy": "zsh scripts/deploy-lambda.sh"
   },
   "author": "",
   "license": "ISC",

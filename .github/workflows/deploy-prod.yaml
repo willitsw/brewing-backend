@@ -16,5 +16,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Build Dependencies
         run: npm ci
-      - name: Package and deploy lambdas
-        run: npm run deploy
+      - name: Make script runnable
+        run: chmod +x "${GITHUB_WORKSPACE}/scripts/deploy-lambda.sh"
+      - name: Run deploy script
+        run: "${GITHUB_WORKSPACE}/scripts/deploy-lambda.sh"
