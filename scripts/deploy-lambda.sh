@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 echo "Compiling TS to JS"
 rm -rf artifacts && tsc
