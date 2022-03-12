@@ -1,27 +1,27 @@
-import { BrewSettings } from "../types/brew-settings";
+import { BrewingTypes as BT } from "brewing-shared";
 import { FirebaseUser } from "../types/firebase-user";
 import { putItem, getItem, deleteItem } from "../utilities/dynamo-helpers";
 
 export const putBrewSetting = async (
-  brewSetting: BrewSettings
+  brewSetting: BT.BrewSettings
 ): Promise<void> => {
   await putItem(brewSetting, "brew-settings");
 };
 
 export const getBrewSettingById = async (
   user: FirebaseUser
-): Promise<BrewSettings> => {
+): Promise<BT.BrewSettings> => {
   const brewSettings = (await getItem(
     user.userId,
     "brew-settings",
     "userId"
-  )) as BrewSettings;
+  )) as BT.BrewSettings;
 
   if (!brewSettings) {
     console.log(
       `Settings for user ${user.displayName} ${user.userId} not found. Creating new settings...`
     );
-    const newBrewSettings: BrewSettings = {
+    const newBrewSettings: BT.BrewSettings = {
       author: user.displayName,
       batchSize: 5,
       boilOffWaterLossRate: 1.5,

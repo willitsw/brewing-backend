@@ -1,4 +1,4 @@
-import { Recipe } from "../types/recipe";
+import { BrewingTypes as BT } from "brewing-shared";
 import {
   putItem,
   getItem,
@@ -6,16 +6,18 @@ import {
   deleteItem,
 } from "../utilities/dynamo-helpers";
 
-export const putRecipe = async (recipe: Recipe): Promise<void> => {
+export const putRecipe = async (recipe: BT.Recipe): Promise<void> => {
   await putItem(recipe, "recipes");
 };
 
-export const getRecipeById = async (id: string): Promise<Recipe> => {
-  return (await getItem(id, "recipes", "id")) as Recipe;
+export const getRecipeById = async (id: string): Promise<BT.Recipe> => {
+  return (await getItem(id, "recipes", "id")) as BT.Recipe;
 };
 
-export const queryRecipesByUser = async (userId: string): Promise<Recipe[]> => {
-  return (await queryItemsByUser(userId, "recipes")) as Recipe[];
+export const queryRecipesByUser = async (
+  userId: string
+): Promise<BT.Recipe[]> => {
+  return (await queryItemsByUser(userId, "recipes")) as BT.Recipe[];
 };
 
 export const deleteRecipe = async (id: string): Promise<void> => {
