@@ -26,12 +26,13 @@ export const recipeTableConfig: DynamoDB.CreateTableInput = {
 
 export const recipeSeedData: BT.Recipe[] = [
   {
-    efficiency: 60,
     author: "Bill W.",
-    description:
-      "This one is a house favorite. A white IPA with orange zest and coriander added at flameout. Based on your own efficiency/volume, tweak the grain bill and bittering hops to hit an OG of low 1.060's and IBUs in the low 60's.",
-    nonFermentables: [
+    batchSize: 4.5,
+    efficiency: 60,
+    id: uuid(),
+    ingredients: [
       {
+        type: "Misc",
         id: uuid(),
         name: "Orange zest",
         amount: "2 oranges",
@@ -40,6 +41,7 @@ export const recipeSeedData: BT.Recipe[] = [
         timing: 0,
       },
       {
+        type: "Misc",
         id: uuid(),
         name: "Coriander, ground",
         amount: "5 tsp",
@@ -48,6 +50,7 @@ export const recipeSeedData: BT.Recipe[] = [
         timing: 0,
       },
       {
+        type: "Misc",
         id: uuid(),
         name: "Gypsum",
         amount: "10.5 g",
@@ -55,10 +58,8 @@ export const recipeSeedData: BT.Recipe[] = [
         step: BT.Step.StrikeWater,
         timing: 0,
       },
-    ],
-    type: "All grain",
-    cultures: [
       {
+        type: "Culture",
         id: uuid(),
         name: "Wyeast 3787",
         attenuation: 78,
@@ -67,11 +68,8 @@ export const recipeSeedData: BT.Recipe[] = [
         step: BT.Step.Fermentor,
         timing: 0,
       },
-    ],
-    name: "June's Mama IPA",
-    measurementType: "imperial",
-    hops: [
       {
+        type: "Hop",
         id: uuid(),
         name: "Magnum",
         amount: 1.5,
@@ -81,6 +79,7 @@ export const recipeSeedData: BT.Recipe[] = [
         notes: "",
       },
       {
+        type: "Hop",
         id: uuid(),
         name: "Citra",
         amount: 2,
@@ -90,6 +89,7 @@ export const recipeSeedData: BT.Recipe[] = [
         notes: "",
       },
       {
+        type: "Hop",
         id: uuid(),
         name: "Centennial",
         amount: 1,
@@ -99,6 +99,7 @@ export const recipeSeedData: BT.Recipe[] = [
         notes: "",
       },
       {
+        type: "Hop",
         id: uuid(),
         name: "Cascade",
         amount: 1,
@@ -107,15 +108,12 @@ export const recipeSeedData: BT.Recipe[] = [
         step: BT.Step.Fermentor,
         notes: "",
       },
-    ],
-    id: "9673094b-799f-483f-bf20-9455063233d7",
-    batchSize: 4.5,
-    fermentables: [
       {
+        type: "Fermentable",
         id: uuid(),
         name: "Pilsner (Weyermann)",
         amount: 7,
-        type: "Grain",
+        fermentableType: "Grain",
         lovibond: 1,
         gravity: 1.038,
         notes: "",
@@ -123,10 +121,11 @@ export const recipeSeedData: BT.Recipe[] = [
         timing: 60,
       },
       {
+        type: "Fermentable",
         id: uuid(),
         name: "Wheat",
         amount: 3,
-        type: "Grain",
+        fermentableType: "Grain",
         lovibond: 1,
         gravity: 1.038,
         notes: "",
@@ -134,10 +133,11 @@ export const recipeSeedData: BT.Recipe[] = [
         timing: 60,
       },
       {
+        type: "Fermentable",
         id: uuid(),
         name: "Wheat Flaked",
         amount: 2,
-        type: "Grain",
+        fermentableType: "Grain",
         lovibond: 2,
         gravity: 1.035,
         notes: "",
@@ -145,10 +145,11 @@ export const recipeSeedData: BT.Recipe[] = [
         timing: 60,
       },
       {
+        type: "Fermentable",
         id: uuid(),
         name: "Acid Malt",
         amount: 0.5,
-        type: "Grain",
+        fermentableType: "Grain",
         lovibond: 3,
         gravity: 1.027,
         notes: "",
@@ -156,6 +157,11 @@ export const recipeSeedData: BT.Recipe[] = [
         timing: 60,
       },
     ],
+    measurementType: "imperial",
+    name: "June's Mama IPA",
+    type: "All grain",
     user: "123456789",
+    description:
+      "This one is a house favorite. A white IPA with orange zest and coriander added at flameout. Based on your own efficiency/volume, tweak the grain bill and bittering hops to hit an OG of low 1.060's and IBUs in the low 60's.",
   },
 ];
