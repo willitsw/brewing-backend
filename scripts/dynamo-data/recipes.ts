@@ -50,7 +50,7 @@ export const recipeSeedData: BT.Recipe[] = [
         timing: 0,
       },
       {
-        type: "Misc",
+        type: "Chemistry",
         id: uuid(),
         name: "Gypsum",
         amount: "10.5 g",
