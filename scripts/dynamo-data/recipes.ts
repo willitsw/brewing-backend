@@ -37,7 +37,7 @@ export const recipeSeedData: BT.Recipe[] = [
         name: "Orange zest",
         amount: "2 oranges",
         notes: "Microplane or chop finely, add to wort at flameout",
-        step: BT.Step.Boil,
+        step: "Boil",
         timing: 0,
       },
       {
@@ -46,7 +46,7 @@ export const recipeSeedData: BT.Recipe[] = [
         name: "Coriander, ground",
         amount: "5 tsp",
         notes: "Add to wort at flamout",
-        step: BT.Step.Boil,
+        step: "Boil",
         timing: 0,
       },
       {
@@ -55,7 +55,7 @@ export const recipeSeedData: BT.Recipe[] = [
         name: "Gypsum",
         amount: "10.5 g",
         notes: "Add to strike water",
-        step: BT.Step.StrikeWater,
+        step: "StrikeWater",
         timing: 0,
       },
       {
@@ -65,7 +65,7 @@ export const recipeSeedData: BT.Recipe[] = [
         attenuation: 78,
         notes: "Do a starter if you have time.",
         form: "Liquid",
-        step: BT.Step.Fermentor,
+        step: "Fermentor",
         timing: 0,
       },
       {
@@ -75,7 +75,7 @@ export const recipeSeedData: BT.Recipe[] = [
         amount: 1.5,
         timing: 60,
         alphaAcid: 12,
-        step: BT.Step.Boil,
+        step: "Boil",
         notes: "",
       },
       {
@@ -85,7 +85,7 @@ export const recipeSeedData: BT.Recipe[] = [
         amount: 2,
         timing: 7,
         alphaAcid: 12,
-        step: BT.Step.Fermentor,
+        step: "Fermentor",
         notes: "",
       },
       {
@@ -95,7 +95,7 @@ export const recipeSeedData: BT.Recipe[] = [
         amount: 1,
         timing: 7,
         alphaAcid: 10.5,
-        step: BT.Step.Fermentor,
+        step: "Fermentor",
         notes: "",
       },
       {
@@ -105,7 +105,7 @@ export const recipeSeedData: BT.Recipe[] = [
         amount: 1,
         timing: 7,
         alphaAcid: 6,
-        step: BT.Step.Fermentor,
+        step: "Fermentor",
         notes: "",
       },
       {
@@ -117,7 +117,7 @@ export const recipeSeedData: BT.Recipe[] = [
         lovibond: 1,
         gravity: 1.038,
         notes: "",
-        step: BT.Step.Mash,
+        step: "Mash",
         timing: 60,
       },
       {
@@ -129,7 +129,7 @@ export const recipeSeedData: BT.Recipe[] = [
         lovibond: 1,
         gravity: 1.038,
         notes: "",
-        step: BT.Step.Mash,
+        step: "Mash",
         timing: 60,
       },
       {
@@ -141,7 +141,7 @@ export const recipeSeedData: BT.Recipe[] = [
         lovibond: 2,
         gravity: 1.035,
         notes: "",
-        step: BT.Step.Mash,
+        step: "Mash",
         timing: 60,
       },
       {
@@ -153,7 +153,7 @@ export const recipeSeedData: BT.Recipe[] = [
         lovibond: 3,
         gravity: 1.027,
         notes: "",
-        step: BT.Step.Mash,
+        step: "Mash",
         timing: 60,
       },
     ],
