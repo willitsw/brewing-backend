@@ -1,6 +1,8 @@
 import { BrewingTypes as BT } from "brewing-shared";
 import { FirebaseUser } from "../types/firebase-user";
 import { putItem, getItem, deleteItem } from "../utilities/dynamo-helpers";
+import { recipeSeedData } from "../scripts/dynamo-data/recipes";
+import { putRecipe } from "./recipe-service";
 
 export const putBrewSetting = async (
   brewSetting: BT.BrewSettings
@@ -38,6 +40,11 @@ export const getBrewSettingById = async (
       mashThickness: 1.3,
     };
     await putBrewSetting(newBrewSettings);
+
+    const firstRecipe = recipeSeedData[0];
+    firstRecipe.user = user.userId;
+    await putRecipe(firstRecipe);
+
     return newBrewSettings;
   }
 
