@@ -9,6 +9,5 @@
     },
     "include": [
         "**/*.ts",
-        "secure/custom-token-generator.js",
     ]
 }

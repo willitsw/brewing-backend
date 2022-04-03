@@ -68,32 +68,23 @@ app.delete(
   }
 );
 
-// BEER SETTINGS ENDPOINTS =======================================================
+// USER ENDPOINTS =======================================================
 
-const brewSettingsGetById = require("../lambdas/brew-settings/get");
-const brewSettingsCreateUpdate = require("../lambdas/brew-settings/create-update");
-const brewSettingsDelete = require("../lambdas/brew-settings/delete");
+const usersGetById = require("../lambdas/users/get");
+const usersCreateUpdate = require("../lambdas/users/create-update");
 
 app.get(
-  "/brew-settings",
+  "/users",
   async (request: express.Request, response: express.Response) => {
-    const data = await processRequest(brewSettingsGetById, request);
+    const data = await processRequest(usersGetById, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );
 
 app.post(
-  "/brew-settings",
+  "/users",
   async (request: express.Request, response: express.Response) => {
-    const data = await processRequest(brewSettingsCreateUpdate, request);
-    response.status(data.statusCode).send(JSON.parse(data.body));
-  }
-);
-
-app.delete(
-  "/brew-settings",
-  async (request: express.Request, response: express.Response) => {
-    const data = await processRequest(brewSettingsDelete, request);
+    const data = await processRequest(usersCreateUpdate, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );

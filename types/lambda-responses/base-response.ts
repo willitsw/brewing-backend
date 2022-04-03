@@ -1,4 +1,4 @@
-type StatusCodes = 200 | 500 | 404 | 401;
+type StatusCodes = 200 | 500 | 404 | 401 | 403;
 
 interface LambdaResponseInterface {
   statusCode: StatusCodes;

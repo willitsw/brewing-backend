@@ -6,14 +6,15 @@
   "scripts": {
     "build": "rm -rf artifacts && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "reset-db": "tsc && node artifacts/compiled-ts/scripts/destroy-dynamo && node artifacts/compiled-ts/scripts/build-dynamo",
     "dev": "docker-compose up -d && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js",
     "webpack": "webpack --mode production",
-    "deploy": "zsh scripts/deploy-lambda.sh"
+    "deploy": "zsh scripts/deploy-lambda.sh",
+    "postinstall": "node_modules/.bin/prisma generate"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@prisma/client": "^3.11.1",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.8",
     "@types/uuid": "^8.3.4",
@@ -24,14 +25,14 @@
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "prisma": "^3.11.1",
     "typescript": "^4.5.5",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
     "zip-webpack-plugin": "^4.0.1"
   },
   "dependencies": {
-    "aws-sdk": "^2.1061.0",
-    "brewing-shared": "github:willitsw/brewing-shared#v0.0.7",
+    "brewing-shared": "github:willitsw/brewing-shared#prisma-poc",
     "jwt-decode": "^3.1.2",
     "uuid": "^8.3.2"
   }

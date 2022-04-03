@@ -11,11 +11,8 @@ const config = {
     RecipeDelete: "./artifacts/compiled-ts/lambdas/recipes/delete.js",
     RecipeGetById: "./artifacts/compiled-ts/lambdas/recipes/get-by-id.js",
     RecipeGetByUser: "./artifacts/compiled-ts/lambdas/recipes/get-by-user.js",
-    BrewSettingsCreateUpdate:
-      "./artifacts/compiled-ts/lambdas/brew-settings/create-update.js",
-    BrewSettingsDelete:
-      "./artifacts/compiled-ts/lambdas/brew-settings/delete.js",
-    BrewSettingsGet: "./artifacts/compiled-ts/lambdas/brew-settings/get.js",
+    UserCreateUpdate: "./artifacts/compiled-ts/lambdas/users/create-update.js",
+    UserGet: "./artifacts/compiled-ts/lambdas/users/get.js",
   },
   //how we want the output
   output: {
@@ -26,6 +23,7 @@ const config = {
   target: "node",
   mode: "production",
   optimization: { minimize: true },
+  externals: ["_http_common", "encoding"],
 };
 //finally zip the output directory, ready to deploy
 const pluginConfig = {
