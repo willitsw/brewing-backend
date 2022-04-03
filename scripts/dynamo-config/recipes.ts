@@ -8,15 +8,25 @@ export const recipeTableConfig: DynamoDB.CreateTableInput = {
   KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
   AttributeDefinitions: [
     { AttributeName: "id", AttributeType: "S" },
-    { AttributeName: "user", AttributeType: "S" },
+    { AttributeName: "userId", AttributeType: "S" },
   ],
   BillingMode: "PAY_PER_REQUEST",
   GlobalSecondaryIndexes: [
     {
       IndexName: "userIndex",
-      KeySchema: [{ AttributeName: "user", KeyType: "HASH" }],
+      KeySchema: [{ AttributeName: "userId", KeyType: "HASH" }],
       Projection: {
-        ProjectionType: "ALL",
+        ProjectionType: "INCLUDE",
+        NonKeyAttributes: [
+          "name",
+          "author",
+          "type",
+          "createdDate",
+          "updatedDate",
+          "measurementType",
+          "batchSize",
+          "efficiency",
+        ],
       },
     },
   ],

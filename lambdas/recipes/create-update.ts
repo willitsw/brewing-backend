@@ -9,7 +9,7 @@ module.exports.handler = async (event) => {
   return await withErrorBoundary(async () => {
     const userId = decodeToken(event.headers.authorization).userId;
     const updatedRecipe: BT.Recipe = JSON.parse(event.body);
-    if (updatedRecipe.user !== userId) {
+    if (updatedRecipe.userId !== userId) {
       return new UnauthorizedResponse();
     }
     await putRecipe(updatedRecipe);

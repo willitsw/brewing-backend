@@ -15,7 +15,7 @@ module.exports.handler = async (event) => {
     if (isEmptyOrNullObject(result)) {
       return new NotFoundResponse(`Recipe with id ${id} not found`);
     }
-    if (result.user !== userId) {
+    if (result.userId !== userId) {
       return new UnauthorizedResponse();
     }
     return new SuccessResponse(result);

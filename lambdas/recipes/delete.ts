@@ -9,7 +9,7 @@ module.exports.handler = async (event) => {
     const userId = decodeToken(event.headers.authorization).userId;
     const id = event.pathParameters.id;
     const recipe = await getRecipeById(id);
-    if (recipe.user !== userId) {
+    if (recipe.userId !== userId) {
       return new UnauthorizedResponse();
     }
     await deleteRecipe(id);

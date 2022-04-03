@@ -73,8 +73,8 @@ export const queryItemsByUser = async (
     .query({
       TableName: tableName,
       IndexName: "userIndex",
-      KeyConditionExpression: "#user = :userFromQuery",
-      ExpressionAttributeNames: { "#user": "user" },
+      KeyConditionExpression: "#userId = :userFromQuery",
+      ExpressionAttributeNames: { "#userId": "userId" },
       ExpressionAttributeValues: { ":userFromQuery": userId },
     })
     .promise();
