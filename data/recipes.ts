@@ -1,31 +1,8 @@
-import { DynamoDB } from "aws-sdk";
 import { BrewingTypes as BT } from "brewing-shared";
-import { DynamoTables } from "../../types/dynamo-tables";
 import { v4 as uuid } from "uuid";
 
-const tableName: DynamoTables = "recipes";
-
-export const recipeTableConfig: DynamoDB.CreateTableInput = {
-  TableName: tableName,
-  KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
-  AttributeDefinitions: [
-    { AttributeName: "id", AttributeType: "S" },
-    { AttributeName: "user", AttributeType: "S" },
-  ],
-  BillingMode: "PAY_PER_REQUEST",
-  GlobalSecondaryIndexes: [
-    {
-      IndexName: "userIndex",
-      KeySchema: [{ AttributeName: "user", KeyType: "HASH" }],
-      Projection: {
-        ProjectionType: "ALL",
-      },
-    },
-  ],
-};
-
-export const recipeSeedData: BT.Recipe[] = [
-  {
+export const getJunesMama = (): BT.Recipe => {
+  return {
     author: "Bill W.",
     batchSize: 4.5,
     efficiency: 60,
@@ -35,7 +12,8 @@ export const recipeSeedData: BT.Recipe[] = [
         type: "Misc",
         id: uuid(),
         name: "Orange zest",
-        amount: "2 oranges",
+        amount: 2,
+        amountType: "Oranges",
         notes: "Microplane or chop finely, add to wort at flameout",
         step: "Boil",
         timing: 0,
@@ -44,7 +22,8 @@ export const recipeSeedData: BT.Recipe[] = [
         type: "Misc",
         id: uuid(),
         name: "Coriander, ground",
-        amount: "5 tsp",
+        amount: 5,
+        amountType: "tsp",
         notes: "Add to wort at flamout",
         step: "Boil",
         timing: 0,
@@ -53,7 +32,8 @@ export const recipeSeedData: BT.Recipe[] = [
         type: "Chemistry",
         id: uuid(),
         name: "Gypsum",
-        amount: "10.5 g",
+        amount: 10.5,
+        amountType: "g",
         notes: "Add to strike water",
         step: "StrikeWater",
         timing: 0,
@@ -67,6 +47,7 @@ export const recipeSeedData: BT.Recipe[] = [
         form: "Liquid",
         step: "Fermentor",
         timing: 0,
+        amount: 1,
       },
       {
         type: "Hop",
@@ -113,9 +94,9 @@ export const recipeSeedData: BT.Recipe[] = [
         id: uuid(),
         name: "Pilsner (Weyermann)",
         amount: 7,
-        fermentableType: "Grain",
+        form: "Grain",
         lovibond: 1,
-        gravity: 1.038,
+        potential: 1.038,
         notes: "",
         step: "Mash",
         timing: 60,
@@ -125,9 +106,9 @@ export const recipeSeedData: BT.Recipe[] = [
         id: uuid(),
         name: "Wheat",
         amount: 3,
-        fermentableType: "Grain",
+        form: "Grain",
         lovibond: 1,
-        gravity: 1.038,
+        potential: 1.038,
         notes: "",
         step: "Mash",
         timing: 60,
@@ -137,9 +118,9 @@ export const recipeSeedData: BT.Recipe[] = [
         id: uuid(),
         name: "Wheat Flaked",
         amount: 2,
-        fermentableType: "Grain",
+        form: "Grain",
         lovibond: 2,
-        gravity: 1.035,
+        potential: 1.035,
         notes: "",
         step: "Mash",
         timing: 60,
@@ -149,9 +130,9 @@ export const recipeSeedData: BT.Recipe[] = [
         id: uuid(),
         name: "Acid Malt",
         amount: 0.5,
-        fermentableType: "Grain",
+        form: "Grain",
         lovibond: 3,
-        gravity: 1.027,
+        potential: 1.027,
         notes: "",
         step: "Mash",
         timing: 60,
@@ -160,8 +141,8 @@ export const recipeSeedData: BT.Recipe[] = [
     measurementType: "imperial",
     name: "June's Mama IPA",
     type: "All grain",
-    user: "123456789",
+    userId: "",
     description:
       "This one is a house favorite. A white IPA with orange zest and coriander added at flameout. Based on your own efficiency/volume, tweak the grain bill and bittering hops to hit an OG of low 1.060's and IBUs in the low 60's.",
-  },
-];
+  };
+};

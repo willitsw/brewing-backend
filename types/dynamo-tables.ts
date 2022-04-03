@@ -1,1 +1,1 @@
-export type DynamoTables = "recipes" | "brew-settings" | "users";
+export type DynamoTables = "recipes" | "users";

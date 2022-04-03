@@ -4,7 +4,7 @@ const tableName: DynamoTables = "users";
 
 export const usersTableConfig: DynamoDB.CreateTableInput = {
   TableName: tableName,
-  KeySchema: [{ AttributeName: "firebaseId", KeyType: "HASH" }],
-  AttributeDefinitions: [{ AttributeName: "firebaseId", AttributeType: "S" }],
+  KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
+  AttributeDefinitions: [{ AttributeName: "id", AttributeType: "S" }],
   BillingMode: "PAY_PER_REQUEST",
 };
