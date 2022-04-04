@@ -25,31 +25,31 @@ jobs:
       - name: Update functions
         run: |
           aws lambda update-function-code \
-            --function-name  RecipeCreateUpdate \
+            --function-name  PROD_RecipeCreateUpdate \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
             --s3-key RecipeCreateUpdate.zip
 
           aws lambda update-function-code \
-            --function-name  RecipeDelete \
+            --function-name  PROD_RecipeDelete \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
             --s3-key RecipeDelete.zip
 
           aws lambda update-function-code \
-            --function-name  RecipeGetById \
+            --function-name  PROD_RecipeGetById \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
             --s3-key RecipeGetById.zip
 
           aws lambda update-function-code \
-            --function-name  RecipeGetByUser \
+            --function-name  PROD_RecipeGetByUser \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
             --s3-key RecipeGetByUser.zip
 
           aws lambda update-function-code \
-            --function-name  UserCreateUpdate \
+            --function-name  PROD_UserCreateUpdate \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
             --s3-key UserCreateUpdate.zip
 
           aws lambda update-function-code \
-            --function-name  UserGet \
+            --function-name  PROD_UserGet \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
             --s3-key UserGet.zip
