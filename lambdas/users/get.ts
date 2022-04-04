@@ -1,3 +1,4 @@
+import "dotenv/config";
 import SuccessResponse from "../../types/lambda-responses/success-response";
 import { decodeToken } from "../../utilities/auth-helpers";
 import { getUserById } from "../../services/brew-settings-service";

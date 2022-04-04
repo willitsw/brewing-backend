@@ -1,4 +1,3 @@
-import "dotenv/config";
 interface Constants {
   readonly applicationPort: number;
   readonly dynamoDbLocation: string;

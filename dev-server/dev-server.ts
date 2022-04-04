@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as express from "express";
+import "dotenv/config";
+
 const cors = require("cors");
 
 const app = express();

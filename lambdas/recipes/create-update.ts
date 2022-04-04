@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { putRecipe } from "../../services/recipe-service";
 import { BrewingTypes as BT } from "brewing-shared";
 import SuccessResponse from "../../types/lambda-responses/success-response";
