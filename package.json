@@ -6,10 +6,8 @@
   "scripts": {
     "build": "rm -rf artifacts && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "reset-db": "tsc && node artifacts/compiled-ts/scripts/destroy-dynamo && node artifacts/compiled-ts/scripts/build-dynamo",
     "dev": "docker-compose up -d && tsc --watch & nodemon -q artifacts/compiled-ts/dev-server/dev-server.js",
-    "webpack": "webpack --mode production",
-    "deploy": "zsh scripts/deploy-lambda.sh"
+    "webpack": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",

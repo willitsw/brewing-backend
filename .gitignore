@@ -15,4 +15,4 @@ docker
 .vscode
 
 .envrc
-/secure
+/local-scripts
