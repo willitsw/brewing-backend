@@ -16,7 +16,45 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Build Dependencies
         run: npm ci
-      - name: Make script runnable
-        run: chmod +x "${GITHUB_WORKSPACE}/scripts/deploy-lambda.sh"
-      - name: Run deploy script
-        run: "${GITHUB_WORKSPACE}/scripts/deploy-lambda.sh"
+      - name: Compile typescript
+        run: ts
+      - name: Pack up zip files
+        run: webpack --mode production
+      - name: Sync to S3 bucket
+        run: aws s3 sync "artifacts/built-lambdas/zip"  s3://${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }}
+      - name: Update functions
+        run: |
+          aws lambda update-function-code \
+            --function-name  RecipeCreateUpdate \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key RecipeCreateUpdate.zip
+
+          aws lambda update-function-code \
+            --function-name  RecipeDelete \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key RecipeDelete.zip
+
+          aws lambda update-function-code \
+            --function-name  RecipeGetById \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key RecipeGetById.zip
+
+          aws lambda update-function-code \
+            --function-name  RecipeGetByUser \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key RecipeGetByUser.zip
+
+          aws lambda update-function-code \
+            --function-name  BrewSettingsCreateUpdate \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key BrewSettingsCreateUpdate.zip
+
+          aws lambda update-function-code \
+            --function-name  BrewSettingsDelete \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key BrewSettingsDelete.zip
+
+          aws lambda update-function-code \
+            --function-name  BrewSettingsGet \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key BrewSettingsGet.zip  
