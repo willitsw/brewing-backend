@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { deleteRecipe, getRecipeById } from "../../services/recipe-service";
 import SuccessResponse from "../../types/lambda-responses/success-response";
 import UnauthorizedResponse from "../../types/lambda-responses/unauthorized-responxe";

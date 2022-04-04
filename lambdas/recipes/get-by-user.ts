@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { queryRecipesByUser } from "../../services/recipe-service";
 import SuccessResponse from "../../types/lambda-responses/success-response";
 import { decodeToken } from "../../utilities/auth-helpers";

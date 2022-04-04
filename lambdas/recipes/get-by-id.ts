@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { isEmptyOrNullObject } from "../../utilities/misc";
 import { getRecipeById } from "../../services/recipe-service";
 import SuccessResponse from "../../types/lambda-responses/success-response";

@@ -1,4 +1,3 @@
-import "dotenv/config";
 import SuccessResponse from "../../types/lambda-responses/success-response";
 import UnauthorizedResponse from "../../types/lambda-responses/unauthorized-responxe";
 import { decodeToken } from "../../utilities/auth-helpers";
