@@ -1,17 +1,31 @@
-const isLocal = process.env.environment !== "production";
-
 interface Constants {
-  applicationPort: number;
-  dynamoDbLocation: string;
-  awsRegion: string;
-  isLocal: boolean;
+  readonly applicationPort: number;
+  readonly dynamoDbLocation: string;
+  readonly awsRegion: string;
+  readonly isLocal: boolean;
 }
 
-export const constants: Constants = {
-  applicationPort: 5000,
-  dynamoDbLocation: isLocal
-    ? "http://localhost:8000"
-    : "https://dynamodb.us-east-2.amazonaws.com",
-  awsRegion: isLocal ? "local" : "us-east-2",
-  isLocal: isLocal,
-};
+let constants: Constants;
+
+switch (process.env.APP_ENV) {
+  case "production":
+    constants = {
+      applicationPort: 5000,
+      dynamoDbLocation: "https://dynamodb.us-east-2.amazonaws.com",
+      awsRegion: "us-east-2",
+      isLocal: false,
+    };
+    break;
+  case "development":
+    constants = {
+      applicationPort: 5000,
+      dynamoDbLocation: "http://localhost:8000",
+      awsRegion: "local",
+      isLocal: true,
+    };
+    break;
+  default:
+    throw Error(`Invalid environment supplied: ${process.env.APP_ENV}`);
+}
+
+export default constants;

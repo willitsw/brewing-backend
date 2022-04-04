@@ -1,6 +1,6 @@
 import { DynamoDB } from "aws-sdk";
 import { DynamoTables } from "../types/dynamo-tables";
-import { constants } from "../constants";
+import constants from "../constants";
 
 const dynamoClient = new DynamoDB({
   apiVersion: "2012-08-10",
