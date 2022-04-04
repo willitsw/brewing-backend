@@ -17,7 +17,7 @@ jobs:
       - name: Build Dependencies
         run: npm ci
       - name: Compile typescript
-        run: ts
+        run: tsc
       - name: Pack up zip files
         run: webpack --mode production
       - name: Sync to S3 bucket
