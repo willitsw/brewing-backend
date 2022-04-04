@@ -7,6 +7,8 @@ interface Constants {
 
 let constants: Constants;
 
+console.log(JSON.stringify(process.env));
+
 switch (process.env.APP_ENV) {
   case "production":
     constants = {
