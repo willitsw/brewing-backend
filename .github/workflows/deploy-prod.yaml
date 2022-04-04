@@ -17,7 +17,7 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo APP_ENV="production" >> .env
+          echo APP_ENV=production >> .env
       - name: Build Dependencies
         run: npm ci
       - name: Compile typescript
