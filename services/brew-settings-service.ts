@@ -3,9 +3,10 @@ import { FirebaseUser } from "../types/firebase-user";
 import { putItem, getItem } from "../utilities/dynamo-helpers";
 import { putRecipe } from "./recipe-service";
 import { getJunesMama } from "../data/recipes";
+import constants from "../constants";
 
 export const putUser = async (user: BT.User): Promise<void> => {
-  await putItem(user, "users");
+  await putItem(user, `users-${constants.environment}`);
 };
 
 export const getUserById = async (
