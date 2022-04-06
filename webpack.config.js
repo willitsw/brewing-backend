@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const ZipPlugin = require("zip-webpack-plugin");
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 const config = {
   //what are the entry points to our functions
@@ -35,6 +36,8 @@ const pluginConfig = {
     });
   }),
 };
+
+pluginConfig.plugins.push(new Dotenv());
 
 const webpackConfig = Object.assign(config, pluginConfig);
 module.exports = webpackConfig;
