@@ -1,5 +1,4 @@
 import { DynamoDB } from "aws-sdk";
-import { DynamoTables } from "../types/dynamo-tables";
 import constants from "../constants";
 
 const dynamoClient = new DynamoDB({
@@ -16,7 +15,7 @@ const documentClient = new DynamoDB.DocumentClient({
 
 export const deleteItem = async (
   id: string,
-  tableName: DynamoTables,
+  tableName: string,
   key: string
 ): Promise<void> => {
   await documentClient
@@ -30,10 +29,7 @@ export const deleteItem = async (
   console.log(`Item ${id} deleted from the ${tableName} table.`);
 };
 
-export const putItem = async (
-  item: any,
-  tableName: DynamoTables
-): Promise<void> => {
+export const putItem = async (item: any, tableName: string): Promise<void> => {
   await documentClient
     .put({
       Item: item,
@@ -45,7 +41,7 @@ export const putItem = async (
 
 export const getItem = async (
   pk: string,
-  tableName: DynamoTables,
+  tableName: string,
   key: string
 ): Promise<DynamoDB.DocumentClient.AttributeMap> => {
   const item = await documentClient
@@ -67,7 +63,7 @@ export const getItem = async (
 
 export const queryItemsByUser = async (
   userId: string,
-  tableName: DynamoTables
+  tableName: string
 ): Promise<DynamoDB.DocumentClient.ItemList> => {
   const result = await documentClient
     .query({
@@ -87,16 +83,14 @@ export const queryItemsByUser = async (
 };
 
 export const createDynamoTable = async (
-  tableName: DynamoTables,
+  tableName: string,
   tableConfig: DynamoDB.CreateTableInput
 ): Promise<void> => {
   await dynamoClient.createTable(tableConfig).promise();
   console.log(`Dynamo table ${tableName} created successfully.`);
 };
 
-export const deleteDynamoTable = async (
-  tableName: DynamoTables
-): Promise<void> => {
+export const deleteDynamoTable = async (tableName: string): Promise<void> => {
   await dynamoClient.deleteTable({ TableName: tableName }).promise();
   console.log(`Dynamo table ${tableName} deleted successfully.`);
 };

@@ -5,21 +5,29 @@ import {
   queryItemsByUser,
   deleteItem,
 } from "../utilities/dynamo-helpers";
+import constants from "../constants";
 
 export const putRecipe = async (recipe: BT.Recipe): Promise<void> => {
-  await putItem(recipe, "recipes");
+  await putItem(recipe, `recipes-${constants.environment}`);
 };
 
 export const getRecipeById = async (id: string): Promise<BT.Recipe> => {
-  return (await getItem(id, "recipes", "id")) as BT.Recipe;
+  return (await getItem(
+    id,
+    `recipes-${constants.environment}`,
+    "id"
+  )) as BT.Recipe;
 };
 
 export const queryRecipesByUser = async (
   userId: string
 ): Promise<BT.Recipe[]> => {
-  return (await queryItemsByUser(userId, "recipes")) as BT.Recipe[];
+  return (await queryItemsByUser(
+    userId,
+    `recipes-${constants.environment}`
+  )) as BT.Recipe[];
 };
 
 export const deleteRecipe = async (id: string): Promise<void> => {
-  return await deleteItem(id, "recipes", "id");
+  return await deleteItem(id, `recipes-${constants.environment}`, "id");
 };

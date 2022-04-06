@@ -2,12 +2,10 @@ interface Constants {
   readonly applicationPort: number;
   readonly dynamoDbLocation: string;
   readonly awsRegion: string;
-  readonly isLocal: boolean;
+  readonly environment: "development" | "staging" | "production";
 }
 
 let constants: Constants;
-
-console.log(JSON.stringify(process.env));
 
 switch (process.env.APP_ENV) {
   case "production":
@@ -15,19 +13,16 @@ switch (process.env.APP_ENV) {
       applicationPort: 5000,
       dynamoDbLocation: "https://dynamodb.us-east-2.amazonaws.com",
       awsRegion: "us-east-2",
-      isLocal: false,
+      environment: process.env.APP_ENV,
     };
     break;
-  case "development":
+  default:
     constants = {
       applicationPort: 5000,
       dynamoDbLocation: "http://localhost:8000",
       awsRegion: "local",
-      isLocal: true,
+      environment: "development",
     };
-    break;
-  default:
-    throw Error(`Invalid environment supplied: ${process.env.APP_ENV}`);
 }
 
 export default constants;
