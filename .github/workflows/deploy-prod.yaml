@@ -18,10 +18,16 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Make .env
+      - name: Make .env prod
+        if: github.ref == 'refs/heads/master'
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_APP_ENV: production
+      - name: Make .env staging
+        if: github.ref == 'refs/heads/develop'
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_APP_ENV: staging
       - name: Build Dependencies
         run: npm ci
       - name: Compile typescript
