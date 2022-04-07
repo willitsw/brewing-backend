@@ -12,7 +12,11 @@ export const putUser = async (user: BT.User): Promise<void> => {
 export const getUserById = async (
   firebaseUser: FirebaseUser
 ): Promise<BT.User> => {
-  const user = (await getItem(firebaseUser.userId, "users", "id")) as BT.User;
+  const user = (await getItem(
+    firebaseUser.userId,
+    `users-${constants.environment}`,
+    "id"
+  )) as BT.User;
 
   if (!user) {
     console.log(
