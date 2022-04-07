@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+      - develop
 
 env:
   APP_ENV: production
@@ -17,19 +18,30 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Make .env
+      - name: Make .env prod
+        if: github.ref == 'refs/heads/master'
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_APP_ENV: production
+      - name: Make .env staging
+        if: github.ref == 'refs/heads/develop'
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_APP_ENV: staging
       - name: Build Dependencies
         run: npm ci
       - name: Compile typescript
         run: tsc
       - name: Pack up zip files
         run: webpack --mode production
-      - name: Sync to S3 bucket
+      - name: Sync to S3 bucket production
+        if: github.ref == 'refs/heads/master'
         run: aws s3 sync "artifacts/built-lambdas/zip"  s3://${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }}
-      - name: Update functions
+      - name: Sync to S3 bucket staging
+        if: github.ref == 'refs/heads/develop'
+        run: aws s3 sync "artifacts/built-lambdas/zip"  s3://${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }}
+      - name: Update functions prod
+        if: github.ref == 'refs/heads/master'
         run: |
           aws lambda update-function-code \
             --function-name  production_whatalesyou_RecipeCreateUpdate \
@@ -59,4 +71,36 @@ jobs:
           aws lambda update-function-code \
             --function-name  production_whatalesyou_UserGet \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key UserGet.zip
+      - name: Update functions staging
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_RecipeCreateUpdate \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key RecipeCreateUpdate.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_RecipeDelete \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key RecipeDelete.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_RecipeGetById \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key RecipeGetById.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_RecipeGetByUser \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key RecipeGetByUser.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_UserCreateUpdate \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key UserCreateUpdate.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_UserGet \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
             --s3-key UserGet.zip
