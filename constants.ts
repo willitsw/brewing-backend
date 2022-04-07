@@ -9,6 +9,7 @@ let constants: Constants;
 
 switch (process.env.APP_ENV) {
   case "production":
+  case "staging":
     constants = {
       applicationPort: 5000,
       dynamoDbLocation: "https://dynamodb.us-east-2.amazonaws.com",
