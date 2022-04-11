@@ -1,4 +1,4 @@
-import { BrewingTypes as BT } from "brewing-shared";
+import { BrewingTypes as BT, RecipeUtils as RU } from "brewing-shared";
 import { v4 as uuid } from "uuid";
 
 export const getJunesMama = (): BT.Recipe => {
@@ -7,6 +7,8 @@ export const getJunesMama = (): BT.Recipe => {
     batchSize: 4.5,
     efficiency: 60,
     id: uuid(),
+    createdDate: RU.getDate(),
+    updatedDate: RU.getDate(),
     ingredients: [
       {
         type: "Misc",
