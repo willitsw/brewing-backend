@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.1061.0",
-    "brewing-shared": "github:willitsw/brewing-shared#v0.0.13",
+    "brewing-shared": "github:willitsw/brewing-shared#v0.0.15",
     "jwt-decode": "^3.1.2",
     "uuid": "^8.3.2"
   }
