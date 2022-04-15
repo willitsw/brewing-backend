@@ -9,6 +9,7 @@ export const getJunesMama = (): BT.Recipe => {
     id: uuid(),
     createdDate: RU.getDate(),
     updatedDate: RU.getDate(),
+    measurementType: "imperial",
     ingredients: [
       {
         type: "Misc",
