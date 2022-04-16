@@ -69,7 +69,7 @@ app.delete(
   }
 );
 
-// BEER SETTINGS ENDPOINTS =======================================================
+// USER ENDPOINTS =======================================================
 
 const userGetById = require("../lambdas/users/get");
 const userCreateUpdate = require("../lambdas/users/create-update");
@@ -86,6 +86,45 @@ app.post(
   "/users",
   async (request: express.Request, response: express.Response) => {
     const data = await processRequest(userCreateUpdate, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+// BREW LOG ENDPOINTS =======================================================
+
+const brewLogGetById = require("../lambdas/brew-log/get-by-id");
+const brewLogCreateUpdate = require("../lambdas/brew-log/create-update");
+const brewLogDelete = require("../lambdas/brew-log/delete");
+const brewLogQueryByUser = require("../lambdas/brew-log/get-by-user");
+
+app.get(
+  "/brew-logs/:id",
+  async (request: express.Request, response: express.Response) => {
+    const data = await processRequest(brewLogGetById, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.get(
+  "/brew-logs",
+  async (request: express.Request, response: express.Response) => {
+    const data = await processRequest(brewLogQueryByUser, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.post(
+  "/brew-logs",
+  async (request: express.Request, response: express.Response) => {
+    const data = await processRequest(brewLogCreateUpdate, request);
+    response.status(data.statusCode).send(JSON.parse(data.body));
+  }
+);
+
+app.delete(
+  "/brew-logs/:id",
+  async (request: express.Request, response: express.Response) => {
+    const data = await processRequest(brewLogDelete, request);
     response.status(data.statusCode).send(JSON.parse(data.body));
   }
 );
