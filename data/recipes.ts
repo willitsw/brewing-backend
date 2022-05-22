@@ -1,5 +1,6 @@
 import { BrewingTypes as BT, RecipeUtils as RU } from "brewing-shared";
 import { v4 as uuid } from "uuid";
+import { DateTime } from "luxon";
 
 export const getJunesMama = (): BT.Recipe => {
   return {
@@ -7,8 +8,8 @@ export const getJunesMama = (): BT.Recipe => {
     batchSize: 4.5,
     efficiency: 60,
     id: uuid(),
-    createdDate: RU.getDate(),
-    updatedDate: RU.getDate(),
+    createdDate: DateTime.now().toISO(),
+    updatedDate: DateTime.now().toISO(),
     measurementType: "imperial",
     ingredients: [
       {
