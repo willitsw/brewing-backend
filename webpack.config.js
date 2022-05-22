@@ -14,6 +14,11 @@ const config = {
     RecipeGetByUser: "./artifacts/compiled-ts/lambdas/recipes/get-by-user.js",
     UserCreateUpdate: "./artifacts/compiled-ts/lambdas/users/create-update.js",
     UserGet: "./artifacts/compiled-ts/lambdas/users/get.js",
+    BrewLogCreateUpdate:
+      "./artifacts/compiled-ts/lambdas/recipes/create-update.js",
+    BrewLogDelete: "./artifacts/compiled-ts/lambdas/brew-log/delete.js",
+    BrewLogGetById: "./artifacts/compiled-ts/lambdas/brew-log/get-by-id.js",
+    BrewLogGetByUser: "./artifacts/compiled-ts/lambdas/brew-log/get-by-user.js",
   },
   //how we want the output
   output: {

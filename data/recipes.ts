@@ -1,5 +1,6 @@
 import { BrewingTypes as BT } from "brewing-shared";
 import { v4 as uuid } from "uuid";
+import { DateTime } from "luxon";
 
 export const getJunesMama = (): BT.Recipe => {
   return {
@@ -7,6 +8,9 @@ export const getJunesMama = (): BT.Recipe => {
     batchSize: 4.5,
     efficiency: 60,
     id: uuid(),
+    createdDate: DateTime.now().toISO(),
+    updatedDate: DateTime.now().toISO(),
+    measurementType: "imperial",
     ingredients: [
       {
         type: "Misc",
@@ -48,12 +52,14 @@ export const getJunesMama = (): BT.Recipe => {
         step: "Fermentor",
         timing: 0,
         amount: 1,
+        amountType: "package",
       },
       {
         type: "Hop",
         id: uuid(),
         name: "Magnum",
         amount: 1.5,
+        amountType: "oz",
         timing: 60,
         alphaAcid: 12,
         step: "Boil",
@@ -64,6 +70,7 @@ export const getJunesMama = (): BT.Recipe => {
         id: uuid(),
         name: "Citra",
         amount: 2,
+        amountType: "oz",
         timing: 7,
         alphaAcid: 12,
         step: "Fermentor",
@@ -74,6 +81,7 @@ export const getJunesMama = (): BT.Recipe => {
         id: uuid(),
         name: "Centennial",
         amount: 1,
+        amountType: "oz",
         timing: 7,
         alphaAcid: 10.5,
         step: "Fermentor",
@@ -84,6 +92,7 @@ export const getJunesMama = (): BT.Recipe => {
         id: uuid(),
         name: "Cascade",
         amount: 1,
+        amountType: "oz",
         timing: 7,
         alphaAcid: 6,
         step: "Fermentor",
@@ -94,6 +103,7 @@ export const getJunesMama = (): BT.Recipe => {
         id: uuid(),
         name: "Pilsner (Weyermann)",
         amount: 7,
+        amountType: "lb",
         form: "Grain",
         lovibond: 1,
         potential: 1.038,
@@ -106,6 +116,7 @@ export const getJunesMama = (): BT.Recipe => {
         id: uuid(),
         name: "Wheat",
         amount: 3,
+        amountType: "lb",
         form: "Grain",
         lovibond: 1,
         potential: 1.038,
@@ -118,6 +129,7 @@ export const getJunesMama = (): BT.Recipe => {
         id: uuid(),
         name: "Wheat Flaked",
         amount: 2,
+        amountType: "lb",
         form: "Grain",
         lovibond: 2,
         potential: 1.035,
@@ -130,6 +142,7 @@ export const getJunesMama = (): BT.Recipe => {
         id: uuid(),
         name: "Acid Malt",
         amount: 0.5,
+        amountType: "lb",
         form: "Grain",
         lovibond: 3,
         potential: 1.027,
@@ -138,7 +151,6 @@ export const getJunesMama = (): BT.Recipe => {
         timing: 60,
       },
     ],
-    measurementType: "imperial",
     name: "June's Mama IPA",
     type: "All grain",
     userId: "",

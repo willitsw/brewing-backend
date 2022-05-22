@@ -28,6 +28,8 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_APP_ENV: staging
+      - name: Force ssh protocol
+        run: git config --global url."ssh://git@".insteadOf git://
       - name: Build Dependencies
         run: npm ci
       - name: Compile typescript
@@ -72,6 +74,27 @@ jobs:
             --function-name  production_whatalesyou_UserGet \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
             --s3-key UserGet.zip
+
+          aws lambda update-function-code \
+            --function-name  production_whatalesyou_BrewLogCreateUpdate \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key BrewLogCreateUpdate.zip
+
+          aws lambda update-function-code \
+            --function-name  production_whatalesyou_BrewLogDelete \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key BrewLogDelete.zip
+
+          aws lambda update-function-code \
+            --function-name  production_whatalesyou_BrewLogGetById \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key BrewLogGetById.zip
+
+          aws lambda update-function-code \
+            --function-name  production_whatalesyou_BrewLogGetByUser \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_PROD }} \
+            --s3-key BrewLogGetByUser.zip
+
       - name: Update functions staging
         if: github.ref == 'refs/heads/develop'
         run: |
@@ -104,3 +127,23 @@ jobs:
             --function-name  staging_whatalesyou_UserGet \
             --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
             --s3-key UserGet.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_BrewLogCreateUpdate \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key BrewLogCreateUpdate.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_BrewLogDelete \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key BrewLogDelete.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_BrewLogGetById \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key BrewLogGetById.zip
+
+          aws lambda update-function-code \
+            --function-name  staging_whatalesyou_BrewLogGetByUser \
+            --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET_NAME_STAGING }} \
+            --s3-key BrewLogGetByUser.zip
