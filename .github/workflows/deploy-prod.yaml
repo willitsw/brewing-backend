@@ -28,6 +28,8 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_APP_ENV: staging
+      - name: Force ssh protocol
+        run: git config --global url."ssh://git@".insteadOf git://
       - name: Build Dependencies
         run: npm ci
       - name: Compile typescript
