@@ -15,7 +15,7 @@ const config = {
     UserCreateUpdate: "./artifacts/compiled-ts/lambdas/users/create-update.js",
     UserGet: "./artifacts/compiled-ts/lambdas/users/get.js",
     BrewLogCreateUpdate:
-      "./artifacts/compiled-ts/lambdas/recipes/create-update.js",
+      "./artifacts/compiled-ts/lambdas/brew-log/create-update.js",
     BrewLogDelete: "./artifacts/compiled-ts/lambdas/brew-log/delete.js",
     BrewLogGetById: "./artifacts/compiled-ts/lambdas/brew-log/get-by-id.js",
     BrewLogGetByUser: "./artifacts/compiled-ts/lambdas/brew-log/get-by-user.js",
